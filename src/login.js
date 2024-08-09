@@ -25,7 +25,8 @@ function Login() {
                 <div  className='d-block text-center'>
                  <img src={logo1} alt='comnylogo'style={{width:"150px",height:"50px"}}/>
                 </div>
-             <h3 className='text-center mt-1 mb-3'>Admin Login</h3>             
+             <h3 className='text-center mt-1 mb-3'>Admin Login</h3>         
+ 
              <Form> 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>

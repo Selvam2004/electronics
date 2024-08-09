@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import User_nav from "./User_nav";
 import "../css/User_home.css";
 import Button from "react-bootstrap/Button";
@@ -7,41 +7,39 @@ import card_img from "../images/mouse.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Container } from "react-bootstrap";
+import Detail_Modal from "./Detail_Modal";
 const User_home = () => {
+  const [modalShow, setModalShow]=useState(false)
   return (
     <div>
       <User_nav />
       <div className="user-content">
         <h1>Welcome To Electro Solve</h1>
         <h3>Available Products</h3>
-      {/* <Container>
-      <Row>
-          <Col md={8}>
-            <div>
-              <div class="InputContainer">
-                <input
-                  placeholder="Search"
-                  id="input"
-                  class="input"
-                  name="text"
-                  type="text"
-                />
-
-                <label class="labelforsearch" for="input">
-                  <svg class="searchIcon" viewBox="0 0 512 512">
-                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
+        <Container>
+          <Row>
+            <Col md={8}>
+              <div>
+                <div class="group">
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                    <g>
+                      <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                    </g>
                   </svg>
-                </label>
+                  <input placeholder="Search Your Product" type="search" class="input" />
+                </div>
               </div>
-            </div>
-          </Col>
-          <Col md={4}></Col>
-        </Row>
-      </Container> */}
+            </Col>
+            <Col md={4}>
+            <button className="badges">General</button>
+            <button className="badges">Mechanical</button>
+            <button className="badges">Electronics</button>
+            </Col>
+          </Row>
+        </Container>
         <div className="card-main-div">
-          
           <div className="card-div">
-            <Card style={{ width: "80%", backgroundColor: "#a9edff" }}>
+            <Card className="card-comp" style={{ width: "80%", backgroundColor: "#a9edff" }}>
               <Card.Body className="card-body">
                 <Row style={{ width: "100%" }}>
                   <Col md={4} xs={12}>
@@ -73,16 +71,21 @@ const User_home = () => {
                     </Row>
                     <h5 className="description">Available Quanttity: 50</h5>
                     <Button
+                    onClick={()=>setModalShow(true)}
                       style={{
                         backgroundColor: "#26d3ff",
                         border: "#26d3ff",
                         float: "right",
                         padding: "13px",
-                        color:'black',
+                        color: "black",
                       }}
                     >
                       Claim Product
                     </Button>
+                    <Detail_Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
                   </Col>
                 </Row>
               </Card.Body>

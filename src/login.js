@@ -2,7 +2,7 @@ import './css/login.css';
 
 import Form from 'react-bootstrap/Form'; 
 import loginImage from "./images/logImage.jpg"
-import  logo1 from "./images/logo1.jpg"
+import  logo1 from "./images/companylogo.webp"
 import { useState } from 'react';
 function Login() {
   const [imgcls,Setimgcls ] = useState("img");

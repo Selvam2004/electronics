@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import User_nav from "./User_nav";
+import UserNav from "./UserNav";
 import "../css/User_home.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -7,12 +7,12 @@ import card_img from "../images/mouse.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Container } from "react-bootstrap";
-import Detail_Modal from "./Detail_Modal";
-const User_home = () => {
+import DetailModal from "./DetailModal";
+const Home = () => {
   const [modalShow, setModalShow]=useState(false)
   return (
     <div>
-      <User_nav />
+      <UserNav />
       <div className="user-content">
         <h1>Welcome To Electro Solve</h1>
         <h3>Available Products</h3>
@@ -45,7 +45,7 @@ const User_home = () => {
                   <Col md={4} xs={12}>
                     <div className="img-div">
                       {" "}
-                      <img src={card_img} className="card-img"></img>
+                      <img src={card_img} className="card-img" alt="item-image"></img>
                     </div>
                   </Col>
                   <Col md={8} xs={12} className="product-desp">
@@ -82,7 +82,7 @@ const User_home = () => {
                     >
                       Claim Product
                     </Button>
-                    <Detail_Modal
+                    <DetailModal
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
@@ -97,4 +97,4 @@ const User_home = () => {
   );
 };
 
-export default User_home;
+export default Home;

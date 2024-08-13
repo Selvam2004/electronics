@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import Container from "react-bootstrap/Container"; 
+import Navbar from "react-bootstrap/Navbar"; 
 import logo1 from "../images/companylogo.webp";
 //color #a9edff
 import "../css/User_nav.css";
 import { Row } from "react-bootstrap";
-const User_nav = () => {
+const UserNav = () => {
   const [profile, Setprofile] = useState("none");
-  const manage_click = () => {
+  const manageClick = () => {
     if (profile === "none") {
       Setprofile("block");
     } else {
@@ -31,7 +29,7 @@ const User_nav = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <div className="nav-item">
-              <div className="profile-div" onClick={manage_click}>
+              <div className="profile-div" onClick={manageClick}>
                 <div className="profile-img">
                   <img
                     className="user-img"
@@ -57,4 +55,4 @@ const User_nav = () => {
   );
 };
 
-export default User_nav;
+export default UserNav;

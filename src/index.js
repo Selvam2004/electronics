@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './login';
+import { BrowserRouter } from "react-router-dom";
+
 import reportWebVitals from './reportWebVitals';
-import User_home from './User_Componants/User_home';
-import User_nav from './User_Componants/User_nav';
+import Router from './router';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <User_home/>
-    {/* <Login/> */}
+    <BrowserRouter>
+     <Router/>
+    </BrowserRouter>
   </React.StrictMode>
 ); 
 reportWebVitals();

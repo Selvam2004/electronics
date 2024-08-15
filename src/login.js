@@ -16,6 +16,7 @@ function Login() {
     e.preventDefault();
     Setimgcls(imgcls==="img"?"img-not":"img"); 
     setAdmin(!admin)
+    setError({});
 }
 
 const handleForgot =(e)=>{

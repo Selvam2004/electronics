@@ -25,8 +25,7 @@ const DetailModal = (props) => {
     } catch (err) {
         console.error("Error while claiming items:", err.message);
     }
-};
-console.log({props})
+}; 
   return (
     <div>
       <Modal

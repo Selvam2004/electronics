@@ -7,12 +7,26 @@ const DetailModal = (props) => {
   const [designerName,setDesignerName] = useState();
   const [projectName,setProjectName] = useState();
   const [quantity,setQuantity] = useState();
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post(`${process.env.REACT_APP_API}/home/claimItems`,{name:props.name,mfg:props.mfg,designerName:designerName,projectName:projectName,quantity:quantity})
-    .then((res)=>alert(res.data))
-    .catch(err=>console.log(err))
-  }
+
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API}/home/claimItems`, {
+            name: props.name,
+            mfg: props.mfg,
+            designerName: designerName,
+            projectName: projectName,
+            quantity: quantity
+        });
+
+        alert(response.data); // Show the success message
+
+        props.onHide(); // Hide the modal
+    } catch (err) {
+        console.error("Error while claiming items:", err.message);
+    }
+};
+console.log({props})
   return (
     <div>
       <Modal
@@ -44,7 +58,7 @@ const DetailModal = (props) => {
         
       </Modal.Body>
       <Modal.Footer>
-        <Button style={{backgroundColor:'#26d3ff',border:'#26d3ff',color:'black'}} onClick={props.onHide} onSubmit={handleSubmit}>Submit</Button>
+        <Button style={{backgroundColor:'#26d3ff',border:'#26d3ff',color:'black'}} onClick={handleSubmit}>Submit</Button>
       </Modal.Footer>
     </Modal>
     </div>

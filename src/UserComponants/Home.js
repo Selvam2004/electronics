@@ -12,45 +12,53 @@ import UserFooter from "./UserFooter";
 import axios from "axios";
 
 const Home = () => {
-  const [modalShow, setModalShow]=useState(false);
-  const [items,setItems]=useState([]);
-  const [filter,setFilter] = useState([]);
-  const [search,setSearch] = useState();
-  useEffect(()=>{ 
-    const data = items.filter((data)=>{ 
-       if(data.name.toLowerCase().includes(search.toLowerCase())||data.supplier.toLowerCase().includes(search.toLowerCase())||data.mfg.toLowerCase().includes(search.toLowerCase())){
-        return true;
-       } 
-    }) 
-    if(search===""){
-      setFilter(items);
-    }   
-    else{
-      setFilter(data);
-    } 
-  },[search]);
-const filterGeneral = ()=>{
-  const data = items.filter((data)=>data.category==="General");
-  setFilter(data);
-}
-const filterMechanical = ()=>{
-  const data = items.filter((data)=>data.category==="Mechanical");
-  setFilter(data);
-}
-const filterElectronics = ()=>{
-  const data = items.filter((data)=>data.category==="Electronics");
-  setFilter(data);
-}
-  useEffect(()=>{
-    axios.get(`${process.env.REACT_APP_API}/home/getItems`)
-    .then(res=>{ 
-      setItems(res.data);
-      setFilter(res.data);
-    })
-    .catch(err=>console.log(err.message));
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null); 
+  const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const data = items.filter((data) => {
+      return data.name.toLowerCase().includes(search.toLowerCase()) || 
+             data.supplier.toLowerCase().includes(search.toLowerCase()) || 
+             data.mfg.toLowerCase().includes(search.toLowerCase());
+    });
+
+    setFilter(search === "" ? items : data);
     // eslint-disable-next-line 
-  },[])
-  
+  }, [search, items]);
+
+  const filterGeneral = () => {
+    const data = items.filter((data) => data.category === "General");
+    setFilter(data);
+  };
+
+  const filterMechanical = () => {
+    const data = items.filter((data) => data.category === "Mechanical");
+    setFilter(data);
+  };
+
+  const filterElectronics = () => {
+    const data = items.filter((data) => data.category === "Electronics");
+    setFilter(data);
+  };
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API}/home/getItems`)
+      .then(res => {
+        setItems(res.data);
+        setFilter(res.data);
+      })
+      .catch(err => console.log(err.message));
+    // eslint-disable-next-line 
+  }, []);
+
+  const handleModalShow = (item) => {
+    setSelectedItem(item);
+    setModalShow(true);
+  };
+
   return (
     <div>
       <UserNav />
@@ -67,47 +75,48 @@ const filterElectronics = ()=>{
                       <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
                     </g>
                   </svg>
-                  <input placeholder="Search Your Product" type="search" className="input" onChange={e=>setSearch(e.target.value)}/>
+                  <input
+                    placeholder="Search Your Product"
+                    type="search"
+                    className="input"
+                    onChange={e => setSearch(e.target.value)}
+                  />
                 </div>
               </div>
             </Col>
             <Col md={4}>
-            <button className="badges" onClick={filterGeneral}>General</button>
-            <button className="badges" onClick={filterMechanical}>Mechanical</button>
-            <button className="badges" onClick={filterElectronics}>Electronics</button>
+              <button className="badges" onClick={filterGeneral}>General</button>
+              <button className="badges" onClick={filterMechanical}>Mechanical</button>
+              <button className="badges" onClick={filterElectronics}>Electronics</button>
             </Col>
           </Row>
         </Container>
         {
-          filter.map((item,index)=>{
-            return (
-              <div className="card-main-div" key={index}>
+          filter.map((item, index) => (
+            <div className="card-main-div" key={index}>
               <div className="card-div">
                 <Card className="card-comp" style={{ width: "80%", backgroundColor: "#a9edff" }}>
                   <Card.Body className="card-body">
                     <Row style={{ width: "100%" }}>
                       <Col md={4} xs={12}>
                         <div className="img-div">
-                          {" "}
-                          <img src={card_img} className="card-img" alt="item-image"></img>
+                          <img src={card_img} className="card-img" alt="item-image" />
                         </div>
                       </Col>
                       <Col md={8} xs={12} className="product-desp">
                         <h2 className="description">{item.name}</h2>
-                        <h5 className="description">
-                          ES Part:ES{item.espart}
-                        </h5>
+                        <h5 className="description">ES Part: ES{item.espart}</h5>
                         <Row className="description">
                           <Col>
                             <h5>Mfg Part: {item.mfgpart}</h5>
                           </Col>
                           <Col>
-                            <h5>Mfg : {item.mfg}</h5>
+                            <h5>Mfg: {item.mfg}</h5>
                           </Col>
                         </Row>
                         <Row className="description">
                           <Col>
-                            <h5>Supplier : {item.supplier}</h5>
+                            <h5>Supplier: {item.supplier}</h5>
                           </Col>
                           <Col>
                             <h5>Category: {item.category}</h5>
@@ -115,7 +124,7 @@ const filterElectronics = ()=>{
                         </Row>
                         <h5 className="description">Available Quantity: {item.available}</h5>
                         <Button
-                        onClick={()=>setModalShow(true)}
+                          onClick={() => handleModalShow(item)}
                           style={{
                             backgroundColor: "#26d3ff",
                             border: "#26d3ff",
@@ -126,21 +135,25 @@ const filterElectronics = ()=>{
                         >
                           Claim Product
                         </Button>
-                        <DetailModal show={modalShow} name={item.name} mfg={item.mfg}
-                        onHide={() => setModalShow(false)}
-                        />
                       </Col>
                     </Row>
                   </Card.Body>
                 </Card>
               </div>
             </div>
-            )
-          })
+          ))
         }
 
+        {selectedItem && (
+          <DetailModal
+            show={modalShow}
+            name={selectedItem.name}
+            mfg={selectedItem.mfg}
+            onHide={() => setModalShow(false)}
+          />
+        )}
       </div>
-      <UserFooter/>
+      <UserFooter />
     </div>
   );
 };

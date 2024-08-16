@@ -22,7 +22,7 @@ function Login() {
 const handleForgot =(e)=>{
  e.preventDefault();
  axios
-      .get(`http://localhost:3500/forgotPassword/${email}`,{ withCredentials: true })
+      .get(`${process.env.REACT_APP_API}/forgotPassword/${email}`,{ withCredentials: true })
       .then((result) => {
         if(result.data==="Email sent"){
           alert("Check your Email for Veification");

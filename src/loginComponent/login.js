@@ -1,8 +1,8 @@
-import './css/login.css';
+import '../css/login.css';
 import axios from "axios";
 import Form from 'react-bootstrap/Form'; 
-import loginImage from "./images/logImage.jpg"
-import  logo1 from "./images/companylogo.webp"
+import loginImage from "../images/logImage.jpg"
+import  logo1 from "../images/companylogo.webp"
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 function Login() {

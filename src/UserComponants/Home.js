@@ -8,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Container } from "react-bootstrap";
 import DetailModal from "./DetailModal";
+import UserFooter from "./UserFooter";
 
 const Home = () => {
   const [modalShow, setModalShow]=useState(false);
@@ -95,6 +96,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <UserFooter/>
     </div>
   );
 };

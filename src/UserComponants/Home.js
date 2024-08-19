@@ -22,6 +22,9 @@ const Home = () => {
     const data = items.filter((data) => {
       return data.name.toLowerCase().includes(search.toLowerCase()) || 
              data.supplier.toLowerCase().includes(search.toLowerCase()) || 
+             data.mfgpart.toLowerCase().includes(search.toLowerCase()) || 
+             data.espart.toLowerCase().includes(search.toLowerCase()) || 
+             data.category.toLowerCase().includes(search.toLowerCase()) || 
              data.mfg.toLowerCase().includes(search.toLowerCase());
     });
 
@@ -105,7 +108,7 @@ const Home = () => {
                       </Col>
                       <Col md={8} xs={12} className="product-desp">
                         <h2 className="description">{item.name}</h2>
-                        <h5 className="description">ES Part: ES{item.espart}</h5>
+                        <h5 className="description">ES Part: {item.espart}</h5>
                         <Row className="description">
                           <Col>
                             <h5>Mfg Part: {item.mfgpart}</h5>

@@ -68,7 +68,7 @@ const UserNav = () => {
         <Row>
          <div ><h5 className="option" style={{borderRadius:'8px 8px 0px 0px '}}>{email}</h5></div>
          <div><h5 className="option">{designation}</h5></div>
-        <div> <h5 className="option">Reset Password</h5></div>
+         <div><a href={"/forgotPassword/"+email} style={{textDecoration:"none",color:"black"}}> <h5 className="option">Reset Password</h5></a> </div>
          <div><h5 className="option" style={{color:'red',borderRadius:'0px 0px 8px 8px '}} onClick={handleLogOut}>Log Out</h5></div>
         </Row>
       </div>

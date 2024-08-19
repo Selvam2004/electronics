@@ -1,4 +1,4 @@
-import React, { useState } from 'react' 
+import React, {  useState } from 'react' 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -7,9 +7,10 @@ const DetailModal = (props) => {
   const [designerName,setDesignerName] = useState();
   const [projectName,setProjectName] = useState();
   const [quantity,setQuantity] = useState();
-  const handleSubmit = async (e) => {
+  const [isDisabled,setIsDisabled] = useState(false);
+  const handleSubmit = async (e) => { 
     e.preventDefault();
-
+    setIsDisabled(true);
     try {
         const response = await axios.post(`${process.env.REACT_APP_API}/home/claimItems`, {
             name: props.name,
@@ -18,10 +19,10 @@ const DetailModal = (props) => {
             projectName: projectName,
             quantity: quantity
         });
-
-        alert(response.data); // Show the success message
-
-        props.onHide(); // Hide the modal
+        
+        alert(response.data);  
+        window.location.reload(true);
+        props.onHide();  
     } catch (err) {
         console.error("Error while claiming items:", err.message);
     }
@@ -57,7 +58,7 @@ const DetailModal = (props) => {
         
       </Modal.Body>
       <Modal.Footer>
-        <Button style={{backgroundColor:'#26d3ff',border:'#26d3ff',color:'black'}} onClick={handleSubmit}>Submit</Button>
+        <Button style={{backgroundColor:'#26d3ff',border:'#26d3ff',color:'black'}} disabled={isDisabled} onClick={handleSubmit}>Submit</Button>
       </Modal.Footer>
     </Modal>
     </div>

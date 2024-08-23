@@ -1,0 +1,37 @@
+.main-div{
+    padding: 20px;
+}
+.line{
+    background-color: #26d3ff;
+    width:34%;
+    height: 5px;
+}
+.input-field{
+    background-color: #26d3ff;
+    width: 500px;
+    height: 50px;
+    border-radius: 8px;
+    padding: 5px;
+}
+.user-form{
+    padding: 20px;
+}
+.field{
+    margin: 10px
+}
+.select{
+    width:300px;
+    height: 50px;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #26d3ff;
+}
+.add-btn{
+    padding: 10px;
+    width: 150px;
+    border-radius: 8px;
+    background-color: #26d3ff;
+    float:right;
+    margin-right: 200px;
+    margin-top: 50px;
+}

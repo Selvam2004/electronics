@@ -38,6 +38,14 @@
     border-radius: 10px;
     
 }
+.item.active{
+    transition: all 0.5s;
+    color: black;
+    padding-left: 30px;
+    background-color: red;
+    border-radius: 10px;
+    
+}
 .profile{
     display: flex;
     align-items: center;

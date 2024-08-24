@@ -47,7 +47,7 @@ const AdminNavbar = () => {
               </Nav.Item>
               <Nav.Item className="nav-item" >
                 <Nav.Link 
-                  eventKey="/dashboard/addProduct"
+                  eventKey="/dashboard/addUser"
                   onClick={(e) => handleNavItemClick(e, "/dashboard/addUser")} 
                   className="item"
                 > 

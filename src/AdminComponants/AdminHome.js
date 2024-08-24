@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import card_img from "../images/mouse.png";
@@ -6,7 +6,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
 import '../css/AdminHome.css'
+import ProductEditmodal from './ProductEditmodal';
 const AdminHome = () => {
+  const[modalShow,setModalShow]=useState(false)
   return (
     <div>
       <div className=''>
@@ -94,6 +96,7 @@ const AdminHome = () => {
                             padding: "13px",
                             color: "black",
                           }}
+                          onClick={()=>setModalShow(true)}
                         >
                           Edit Product
                         </Button></Col>
@@ -115,8 +118,13 @@ const AdminHome = () => {
                     </Row>
                   </Card.Body>
                 </Card>
+
               </div>
             </div>
+            <ProductEditmodal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
       </Container>
       </div>
     </div>

@@ -76,7 +76,7 @@ const AdminNavbar = () => {
                  
             </div>
             <div className="nav-right-div">
-               <Outlet/>
+               <AdminHome/>
             </div>
         </div>
     </div>

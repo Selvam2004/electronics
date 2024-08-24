@@ -1,5 +1,8 @@
 .main-div{
     padding: 20px;
+background-color: #a9edff;
+height: 100vh;
+
 }
 .line{
     background-color: #26d3ff;
@@ -15,23 +18,40 @@
 }
 .user-form{
     padding: 20px;
-}
-.field{
-    margin: 10px
-}
-.select{
-    width:300px;
-    height: 50px;
-    border-radius: 8px;
-    padding: 5px;
-    background-color: #26d3ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form elements horizontally */
 }
 .add-btn{
-    padding: 10px;
-    width: 150px;
+    padding: 15px;
+    width:400px;
     border-radius: 8px;
     background-color: #26d3ff;
-    float:right;
-    margin-right: 200px;
-    margin-top: 50px;
+    
+    margin-top: 20px;
 }
+.btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-right:90px ;
+}
+.add-input {
+    font-family: "SF Pro";
+    width: 100%;
+    max-width: 500px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+  }
+  
+  .add-input:focus {
+    box-shadow: 5.5px 7px 0 black;
+  }
+  .form-group{
+    width: 50%;
+  }

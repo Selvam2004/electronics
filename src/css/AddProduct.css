@@ -1,0 +1,31 @@
+.line-product{
+    background-color: #26d3ff;
+    width:39%;
+    height: 5px;
+
+}
+.product-div{
+    padding: 20px;
+    margin-top: 20px;
+
+}
+
+.product-input {
+    font-family: "SF Pro";
+    width: 100%;
+    max-width: 500px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+  }
+  
+  .product-input:focus {
+    box-shadow: 5.5px 7px 0 black;
+  }
+  .product-group{
+    width: 80%;
+  }

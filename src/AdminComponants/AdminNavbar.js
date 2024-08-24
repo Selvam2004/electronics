@@ -2,6 +2,8 @@ import React from 'react'
 import '../css/AdminNavbar.css'
 import logo1 from "../images/companylogo.webp";
 import AddUser from './AddUser';
+import AddProduct from './AddProduct';
+import AdminHome from './AdminHome';
 const AdminNavbar = () => {
   return (
     <div>
@@ -13,7 +15,6 @@ const AdminNavbar = () => {
                         <div className="item">Home</div>
                         <div className="item">Add User</div>
                         <div className="item">Add Product</div>
-                        <div className="item">History</div>
                     </div>
                 </div>
                 {/* <div className="nav-bottom-item">
@@ -31,7 +32,7 @@ const AdminNavbar = () => {
                 <div className="bottom-item"></div> */}
             </div>
             <div className="nav-right-div">
-                <AddUser/>
+               <AdminHome/>
             </div>
         </div>
     </div>

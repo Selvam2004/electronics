@@ -1,51 +1,68 @@
-import React from 'react'
-import '../css/AddUser.css'
-import { Col, Row } from 'react-bootstrap'
+import React from "react";
+import "../css/AddUser.css";
+import Form from "react-bootstrap/Form";
+import { Col, Row } from "react-bootstrap";
 const AddUser = () => {
   return (
     <div>
       <div className="main-div">
         <div className="title-div">
           <h1>Enter The User Details</h1>
-          <div className='line'></div>
+          <div className="line"></div>
         </div>
         <div className="add-div">
-          <form className='user-form'>
-           <div className='field'>
-           <span><h4>Name</h4></span>
-           <input className='input-field' type='text' ></input>
-           </div>
-           <div className='field'>
-           <span><h4>Email</h4></span>
-           <input className='input-field' type='email' ></input>
-           </div>
-           <div className='field'>
-           <span><h4>Password</h4></span>
-           <input className='input-field' type='text' ></input>
-           </div>
-          <Row>
-            <Col> <div className='field'>
-           <span><h4>Designation</h4></span>
-           <input className='input-field' type='text' ></input>
-           </div></Col>
-            <Col>
-            <div className='field'>
-           <span><h4>Role</h4></span>
-            <select className='select'>
-            <option className='opt'>Select Role</option>
-              <option className='opt'>Admin</option>
-              <option className='opt'>User</option>
-            </select>
-           </div></Col>
-          </Row>
-          <div className="btn-div">
-            <button className='add-btn'>Add User</button>
-          </div>
+          <form className="user-form">
+            <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Name"
+                className="add-input"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                className="add-input"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter Password"
+                className="add-input"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 form-group"  controlId="formBasicEmail" >
+              <Form.Label>Designation</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Designation"
+                className="add-input"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3 form-group" >
+              <Form.Label>Role</Form.Label>
+              <Form.Select
+              aria-label="Default select example"
+              className="add-input"
+            >
+              <option>Select The Role</option>
+              <option value="1">User</option>
+              <option value="2">Administrator</option>
+            </Form.Select>
+            </Form.Group>
+            <div className="btn-div">
+              <button className="add-btn">Add User</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddUser
+export default AddUser;

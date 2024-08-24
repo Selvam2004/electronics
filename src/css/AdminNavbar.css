@@ -12,6 +12,7 @@
 }
 .nav-right-div{
     flex:80%;
+    overflow-y: scroll;
 }
 .cmp-logo{
     width: 200px;

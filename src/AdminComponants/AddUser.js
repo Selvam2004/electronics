@@ -60,6 +60,27 @@ const AddUser = () => {
             </div>
           </form>
         </div>
+        <div className="user-delete-div">
+        <div className="title-div">
+          <h1>Delete User</h1>
+          <div className="line-delete"></div>
+        </div>
+        <div className="delete-div">
+          <form className="delete-form">
+          <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                className="add-input"
+              />
+            </Form.Group>
+          <div className="btn-div">
+              <button className="add-btn">Detele User</button>
+            </div>
+          </form>
+        </div>
+        </div>
       </div>
     </div>
   );

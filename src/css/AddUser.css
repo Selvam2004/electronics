@@ -1,12 +1,16 @@
 .main-div{
-    padding: 20px;
+padding: 20px;
 background-color: #a9edff;
-height: 100vh;
-
+height: 100%;
 }
 .line{
     background-color: #26d3ff;
     width:34%;
+    height: 5px;
+}
+.line-delete{
+    background-color: #26d3ff;
+    width:18%;
     height: 5px;
 }
 .input-field{
@@ -20,7 +24,13 @@ height: 100vh;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center form elements horizontally */
+    align-items: center; 
+}
+.delete-form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 .add-btn{
     padding: 15px;

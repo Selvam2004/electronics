@@ -32,7 +32,7 @@ const AdminNavbar = () => {
                 <div className="bottom-item"></div> */}
             </div>
             <div className="nav-right-div">
-               <AdminHome/>
+             <AdminHome/>
             </div>
         </div>
     </div>

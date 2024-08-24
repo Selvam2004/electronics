@@ -63,20 +63,11 @@ const AdminNavbar = () => {
                   <span className="ms-2 d-none d-sm-inline ">Add Product</span>
                 </Nav.Link>
               </Nav.Item> 
-            </Nav> 
-                {/* <div className="top-item" >
-                    <div className="img-div"><img src={logo1} alt='company_logo' className='cmp-logo'></img></div>
-                    <div className="nav-item"  defaultActiveKey="/dashboard/main"   activeKey={activeKey} onSelect={(selectedKey) => setActiveKey(selectedKey)}>
-                        <div className="item" eventKey="/dashboard/main"
-                  onClick={(e) => handleNavItemClick(e, "/dashboard/main")}>Home</div>
-                        <div className="item">Add User</div>
-                        <div className="item">Add Product</div>
-                    </div>
-                </div> */}
+            </Nav>  
                  
             </div>
             <div className="nav-right-div">
-               <AdminHome/>
+               <Outlet/>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import '../css/AddProduct.css'
 import Form from "react-bootstrap/Form";
 import { Col, Row } from 'react-bootstrap'; 

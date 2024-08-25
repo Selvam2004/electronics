@@ -98,7 +98,7 @@ const Home = () => {
           filter.map((item, index) => (
             <div className="card-main-div" key={index}>
               <div className="card-div">
-                <Card className="card-comp" style={{ width: "80%", backgroundColor: "#a9edff" }}>
+                <Card className="card-comp" style={{ width: "90%", backgroundColor: "#a9edff" }}>
                   <Card.Body className="card-body">
                     <Row style={{ width: "100%" }}>
                       <Col md={4} xs={12}>
@@ -110,18 +110,18 @@ const Home = () => {
                         <h2 className="description">{item.name}</h2>
                         <h5 className="description">ES Part: {item.espart}</h5>
                         <Row className="description">
-                          <Col>
+                          <Col md={8}>
                             <h5>Mfg Part: {item.mfgpart}</h5>
                           </Col>
-                          <Col>
+                          <Col md={4}>
                             <h5>Mfg: {item.mfg}</h5>
                           </Col>
                         </Row>
                         <Row className="description">
-                          <Col>
+                          <Col md={8}>
                             <h5>Supplier: {item.supplier}</h5>
                           </Col>
-                          <Col>
+                          <Col md={4}>
                             <h5>Category: {item.category}</h5>
                           </Col>
                         </Row>

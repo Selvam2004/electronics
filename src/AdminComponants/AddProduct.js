@@ -86,13 +86,12 @@ const AddProduct = () => {
             </Row>
             <Row className='product-row'>
                 <Col md={6} className='product-col'>
-                <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
+                <Form.Group className="mb-3 product-group" >
               <Form.Label>Category</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Category"
                 className="product-input"
-                onChange={e=>setCategory(e.target.value)}
               />
             </Form.Group>
                 </Col>

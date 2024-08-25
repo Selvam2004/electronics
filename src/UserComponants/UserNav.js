@@ -41,7 +41,7 @@ const UserNav = () => {
         collapseOnSelect
         expand="lg"
         className=""
-        style={{ backgroundColor: "#26d3ff" }}
+        style={{ backgroundColor: "#26d3ff", }}
       >
         <Container>
           <Navbar.Brand href="#home">

@@ -63,8 +63,13 @@ const AdminNavbar = () => {
                   <span className="ms-2 d-none d-sm-inline ">Add Product</span>
                 </Nav.Link>
               </Nav.Item> 
+             
             </Nav>  
-                 
+            <div className='btm-div'>
+                <div className='btm-nav-item'>Gowtham</div>
+                <div className='btm-nav-item'>gwthampasupathi17@gmail.com</div>
+                <div className='btm-nav-item'>Log Out</div>
+              </div> 
             </div>
             <div className="nav-right-div">
                <Outlet/>

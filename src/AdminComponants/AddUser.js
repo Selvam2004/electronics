@@ -16,7 +16,14 @@ const AddUser = () => {
     }
     else{
       axios.post(`${process.env.REACT_APP_API}/registerUser`,{name,email,password,designation,access},{withCredentials:true})
-      .then((res)=>alert(res.data))
+      .then((res)=>{
+        alert(res.data);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setDesignation("");
+        setAccess("");
+    })
       .catch(err=>console.log(err));
     }
   }
@@ -47,6 +54,7 @@ const AddUser = () => {
                 placeholder="Enter Name"
                 className="add-input"
                 onChange={e=>setName(e.target.value)}
+                value={name}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
@@ -56,6 +64,7 @@ const AddUser = () => {
                 placeholder="Enter email"
                 className="add-input"
                 onChange={e=>setEmail(e.target.value)}
+                value={email}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
@@ -65,6 +74,7 @@ const AddUser = () => {
                 placeholder="Enter Password"
                 className="add-input"
                 onChange={e=>setPassword(e.target.value)}
+                value={password}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group"  controlId="formBasicEmail" >
@@ -74,6 +84,7 @@ const AddUser = () => {
                 placeholder="Enter Designation"
                 className="add-input"
                 onChange={e=>setDesignation(e.target.value)}
+                value={designation}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" >
@@ -82,6 +93,7 @@ const AddUser = () => {
               aria-label="Default select example"
               className="add-input"
               onChange={e=>setAccess(e.target.value)}
+              value={access}
             >
               <option>Select The Access</option>
               <option value="1">User</option>

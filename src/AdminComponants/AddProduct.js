@@ -88,11 +88,16 @@ const AddProduct = () => {
                 <Col md={6} className='product-col'>
                 <Form.Group className="mb-3 product-group" >
               <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Category"
-                className="product-input"
-              />
+              <Form.Select
+              aria-label="Default select example"
+              className="add-input"
+              onChange={e=>setCategory(e.target.value)}
+            >
+              <option>Select The Category</option>
+              <option value="General">General</option>
+              <option value="Mechanical">Mechanical</option>
+              <option value="Electrical">Electrical</option>
+            </Form.Select>
             </Form.Group>
                 </Col>
                 <Col md={6} className='product-col'>

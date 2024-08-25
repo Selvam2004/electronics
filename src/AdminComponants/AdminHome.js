@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import card_img from "../images/mouse.png";
@@ -9,9 +9,60 @@ import { Container } from 'react-bootstrap';
 import '../css/AdminHome.css'
 import ProductEditmodal from './ProductEditmodal';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const AdminHome = () => {
-  const[modalShow,setModalShow]=useState(false)
+  const[modalShow,setModalShow]=useState(false) 
+  const [selectedItem, setSelectedItem] = useState(null); 
+  const [items, setItems] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const data = items.filter((data) => {
+      return data.name.toLowerCase().includes(search.toLowerCase()) || 
+             data.supplier.toLowerCase().includes(search.toLowerCase()) || 
+             data.mfgpart.toLowerCase().includes(search.toLowerCase()) || 
+             data.espart.toLowerCase().includes(search.toLowerCase()) || 
+             data.category.toLowerCase().includes(search.toLowerCase()) || 
+             data.mfg.toLowerCase().includes(search.toLowerCase());
+    });
+
+    setFilter(search === "" ? items : data);
+    // eslint-disable-next-line 
+  }, [search, items]);
+
+  const filterGeneral = () => {
+    const data = items.filter((data) => data.category === "General");
+    setFilter(data);
+  };
+
+  const filterMechanical = () => {
+    const data = items.filter((data) => data.category === "Mechanical");
+    setFilter(data);
+  };
+
+  const filterElectronics = () => {
+    const data = items.filter((data) => data.category === "Electronics");
+    setFilter(data);
+  };
+
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API}/home/getItems`)
+      .then(res => {
+        setItems(res.data);
+        setFilter(res.data);
+      })
+      .catch(err => console.log(err.message));
+    // eslint-disable-next-line 
+  }, []);
   const navigate=useNavigate();
+  const handleModalShow = (item) => {
+    setSelectedItem(item);
+    setModalShow(true);
+  };
+  const handleDelete = (item)=>{
+   
+  }
   return (
     <div>
       <div className=''>
@@ -34,18 +85,20 @@ const AdminHome = () => {
                     placeholder="Search Your Product"
                     type="search"
                     className="input"
-                    
+                    onChange={e => setSearch(e.target.value)}
                   />
                 </div>
               </div>
             </Col>
             <Col md={4}>
-              <button className="badges" >General</button>
-              <button className="badges" >Mechanical</button>
-              <button className="badges">Electronics</button>
+              <button className="badges" onClick={filterGeneral}>General</button>
+              <button className="badges" onClick={filterMechanical}>Mechanical</button>
+              <button className="badges" onClick={filterElectronics}>Electronics</button>
             </Col>
           </Row>
-      <div className="card-main-div" >
+          {
+          filter.map((item, index) => (
+         <div className="card-main-div" >
               <div className="card-div">
                 <Card className="card-comp" style={{ width: "90%", backgroundColor: "#a9edff" }}>
                   <Card.Body className="card-body">
@@ -56,25 +109,25 @@ const AdminHome = () => {
                         </div>
                       </Col>
                       <Col md={9} xs={12} className="product-desp">
-                        <h2 className="description">Mouse</h2>
-                        <h5 className="description">ES Part:ESE-1234567890123456789012345 </h5>
+                        <h2 className="description">{item.name}</h2>
+                        <h5 className="description">ES Part:{item.espart} </h5>
                         <Row className="description">
                           <Col md={8}>
-                            <h5>Mfg Part:1234567890123456789012345 </h5>
+                            <h5>Mfg Part:{item.mfgpart} </h5>
                           </Col>
                           <Col md={4}>
-                            <h5>Mfg: Dell</h5>
+                            <h5>Mfg: {item.mfg}</h5>
                           </Col>
                         </Row>
                         <Row className="description">
                           <Col md={8}>
-                            <h5>Supplier: Flipkart</h5>
+                            <h5>Supplier: {item.supplier}</h5>
                           </Col>
                           <Col md={4}>
-                            <h5>Category:Mechanical</h5>
+                            <h5>Category: {item.category}</h5>
                           </Col>
                         </Row>
-                        <h5 className="description">Available Quantity:10</h5>
+                        <h5 className="description">Available Quantity:{item.available}</h5>
                        <Row style={{margin:'10px'}}>
                         <Col md={4}>
                          <Button
@@ -93,21 +146,20 @@ const AdminHome = () => {
                         </Button></Col>
                         <Col md={4}>
                          <Button
-                         
+                          onClick={() => handleModalShow(item)}
                           style={{
                             backgroundColor: "#26d3ff",
                             border: "#26d3ff",
                             float: "right",
                             padding: "13px",
                             color: "black",
-                          }}
-                          onClick={()=>setModalShow(true)}
+                          }} 
                         >
                           Edit Product
                         </Button></Col>
                         <Col md={4}>
                          <Button
-                         
+                         onClick={()=>handleDelete(item)}
                           style={{
                             backgroundColor: "#FF7F7F",
                             border: "#26d3ff",
@@ -126,10 +178,23 @@ const AdminHome = () => {
 
               </div>
             </div>
+          ))
+        }
+         {selectedItem && (
             <ProductEditmodal
             show={modalShow}
+            _id={selectedItem._id}
+            name={selectedItem.name}
+            mfgpart={selectedItem.mfgpart}
+            supplier={selectedItem.supplier}
+            category={selectedItem.category}
+            mfg={selectedItem.mfg}
+            available={selectedItem.available}
+            imgUrl={selectedItem.imgUrl}
+            linkToBuy={selectedItem.linkToBuy}
             onHide={() => setModalShow(false)}
           />
+         )}
       </Container>
       </div>
     </div>

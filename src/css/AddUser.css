@@ -1,0 +1,67 @@
+.main-div{
+padding: 20px;
+background-color: #a9edff;
+height: 100%;
+}
+.line{
+    background-color: #26d3ff;
+    width:34%;
+    height: 5px;
+}
+.line-delete{
+    background-color: #26d3ff;
+    width:18%;
+    height: 5px;
+}
+.input-field{
+    background-color: #26d3ff;
+    width: 500px;
+    height: 50px;
+    border-radius: 8px;
+    padding: 5px;
+}
+.user-form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.delete-form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.add-btn{
+    padding: 15px;
+    width:200px;
+    border-radius: 8px;
+    background-color: #26d3ff;
+    
+    margin-top: 20px;
+}
+.btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-right:90px ;
+}
+.add-input {
+    font-family: "SF Pro";
+    width: 100%;
+    max-width: 500px;
+    padding: 0.875rem;
+    font-size: 1rem;
+    border: 1.5px solid #000;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #000;
+    outline: none;
+    transition: ease 0.25s;
+  }
+  
+  .add-input:focus {
+    box-shadow: 5.5px 7px 0 black;
+  }
+  .form-group{
+    width: 50%;
+  }

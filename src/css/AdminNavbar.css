@@ -1,0 +1,55 @@
+.nav-main-div{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #f3f3f4;
+}
+.nav-left-div{
+    flex:20%;
+    background-color: #26d3ff;
+    display: flex;
+    flex-direction: column;
+}
+.nav-right-div{
+    flex:80%;
+    overflow-y: scroll;
+}
+.cmp-logo{
+    width: 200px;
+    height: 70px;
+}
+.item{
+    text-align: center;
+    padding-left: 20px;
+    font-size: 20px; 
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px;
+    color: black;
+    border-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+ 
+.item:hover{
+    transition: all 0.5s;
+    color: black;
+    padding-left: 30px;
+    background-color: red;
+    border-radius: 10px;
+    
+}
+.item.active{
+    transition: all 0.5s;
+    color: black;
+    padding-left: 30px;
+    background-color: red;
+    border-radius: 10px;
+    
+}
+.profile{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+    
+}

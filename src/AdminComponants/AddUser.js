@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/AddUser.css";
-import Form from "react-bootstrap/Form";
-import { Col, Row } from "react-bootstrap";
+import Form from "react-bootstrap/Form"; 
+import axios from "axios";
 const AddUser = () => {
+  const [name,setName]= useState();
+  const [email,setEmail]= useState();
+  const [password,setPassword]= useState();
+  const [designation,setDesignation]= useState();
+  const [access,setAccess]= useState();
+  const [removeEmail,setRemoveEmail]= useState();
+  const handleClick=(e)=>{
+    e.preventDefault();
+    if(name===null||email==null||password==null||designation==null||access==null){
+      alert("Please Enter all details to proceed");
+    }
+    else{
+      axios.post(`${process.env.REACT_APP_API}/registerUser`,{name,email,password,designation,access},{withCredentials:true})
+      .then((res)=>alert(res.data))
+      .catch(err=>console.log(err));
+    }
+  }
+  const handleDelete =(e)=>{
+    e.preventDefault();
+    if(removeEmail==null){
+      alert("Please Enter email to proceed");
+    }
+    else{
+      axios.post(`${process.env.REACT_APP_API}/deleteUser`,{removeEmail},{withCredentials:true})
+      .then((res)=>alert(res.data))
+      .catch(err=>console.log(err));
+    }
+  }
   return (
     <div>
       <div className="main-div">
@@ -18,6 +46,7 @@ const AddUser = () => {
                 type="text"
                 placeholder="Enter Name"
                 className="add-input"
+                onChange={e=>setName(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
@@ -26,6 +55,7 @@ const AddUser = () => {
                 type="email"
                 placeholder="Enter email"
                 className="add-input"
+                onChange={e=>setEmail(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" controlId="formBasicEmail">
@@ -34,6 +64,7 @@ const AddUser = () => {
                 type="password"
                 placeholder="Enter Password"
                 className="add-input"
+                onChange={e=>setPassword(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group"  controlId="formBasicEmail" >
@@ -42,6 +73,7 @@ const AddUser = () => {
                 type="text"
                 placeholder="Enter Designation"
                 className="add-input"
+                onChange={e=>setDesignation(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" >
@@ -49,14 +81,15 @@ const AddUser = () => {
               <Form.Select
               aria-label="Default select example"
               className="add-input"
+              onChange={e=>setAccess(e.target.value)}
             >
-              <option>Select The Access</option>
+              <option>Select The Role</option>
               <option value="1">User</option>
               <option value="2">Administrator</option>
             </Form.Select>
             </Form.Group>
             <div className="btn-div">
-              <button className="add-btn">Add User</button>
+              <button className="add-btn" onClick={handleClick}>Add User</button>
             </div>
           </form>
         </div>
@@ -73,10 +106,11 @@ const AddUser = () => {
                 type="email"
                 placeholder="Enter email"
                 className="add-input"
+                onChange={e=>setRemoveEmail(e.target.value)}
               />
             </Form.Group>
           <div className="btn-div">
-              <button className="add-btn">Detele User</button>
+              <button className="add-btn" onClick={handleDelete}>Delete User</button>
             </div>
           </form>
         </div>

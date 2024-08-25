@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap';
 const AddProduct = () => {
   return (
     <div>
-      <div className='main-div'>
+      <div className='main-div-product'>
       <div className="title-div">
           <h1>Enter The Product Details</h1>
           <div className="line-product"></div>
@@ -100,8 +100,8 @@ const AddProduct = () => {
                 </Col>
             </Row>
             <Row>
-            <div className="btn-div">
-              <button className="add-btn">Add Product</button>
+            <div className="btn-div-pro">
+              <button className="add-btn-product">Add Product</button>
             </div>
             </Row>
         </div>

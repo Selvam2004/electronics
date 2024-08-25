@@ -4,6 +4,12 @@
     height: 5px;
 
 }
+.main-div-product{
+  padding: 20px;
+  background-color: #a9edff;
+  height: 100%;
+  min-height: 100vh;
+  }
 .product-div{
     padding: 20px;
     margin-top: 20px;
@@ -29,3 +35,17 @@
   .product-group{
     width: 80%;
   }
+  .add-btn-product{
+    padding: 15px;
+    width:400px;
+    border-radius: 8px;
+    background-color: #26d3ff;
+    
+    margin-top: 20px;
+}
+.btn-div-pro{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-right:90px ;
+}

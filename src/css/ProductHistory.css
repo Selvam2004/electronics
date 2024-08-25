@@ -1,0 +1,17 @@
+.line-history{
+    background-color: #26d3ff;
+    width:19%;
+    height: 5px;
+
+}
+.history-table th{
+
+  border: 1px solid #ddd;
+  padding: 8    px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+}
+.history-table tr{
+    width: 100%;
+}

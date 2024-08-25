@@ -45,12 +45,12 @@ const AddUser = () => {
               />
             </Form.Group>
             <Form.Group className="mb-3 form-group" >
-              <Form.Label>Role</Form.Label>
+              <Form.Label>Access</Form.Label>
               <Form.Select
               aria-label="Default select example"
               className="add-input"
             >
-              <option>Select The Role</option>
+              <option>Select The Access</option>
               <option value="1">User</option>
               <option value="2">Administrator</option>
             </Form.Select>

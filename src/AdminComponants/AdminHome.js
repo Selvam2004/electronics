@@ -5,10 +5,13 @@ import card_img from "../images/mouse.png";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Container } from 'react-bootstrap';
+
 import '../css/AdminHome.css'
 import ProductEditmodal from './ProductEditmodal';
+import { useNavigate } from 'react-router-dom';
 const AdminHome = () => {
   const[modalShow,setModalShow]=useState(false)
+  const navigate=useNavigate();
   return (
     <div>
       <div className=''>
@@ -83,6 +86,8 @@ const AdminHome = () => {
                             padding: "13px",
                             color: "black",
                           }}
+                          onClick={()=>navigate("/dashboard/producthistory")}
+
                         >
                            Product History
                         </Button></Col>

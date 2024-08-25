@@ -57,13 +57,17 @@ const AddProduct = () => {
             </Row>
             <Row className='product-row'>
                 <Col md={6} className='product-col'>
-                <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
+                <Form.Group className="mb-3 product-group" >
               <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Category"
-                className="product-input"
-              />
+              <Form.Select
+              aria-label="Default select example"
+              className="add-input"
+            >
+              <option>Select The Category</option>
+              <option value="1">General</option>
+              <option value="2">Mechanical</option>
+              <option value="3">Electrical</option>
+            </Form.Select>
             </Form.Group>
                 </Col>
                 <Col md={6} className='product-col'>

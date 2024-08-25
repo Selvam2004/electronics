@@ -47,30 +47,30 @@ const AdminHome = () => {
           </Row>
       <div className="card-main-div" >
               <div className="card-div">
-                <Card className="card-comp" style={{ width: "80%", backgroundColor: "#a9edff" }}>
+                <Card className="card-comp" style={{ width: "90%", backgroundColor: "#a9edff" }}>
                   <Card.Body className="card-body">
                     <Row style={{ width: "100%" }}>
-                      <Col md={4} xs={12}>
+                      <Col md={3} xs={12}>
                         <div className="img-div">
                           <img src={card_img} className="card-img" alt="item-image" />
                         </div>
                       </Col>
-                      <Col md={8} xs={12} className="product-desp">
-                        <h2 className="description"></h2>
-                        <h5 className="description">ES Part: </h5>
+                      <Col md={9} xs={12} className="product-desp">
+                        <h2 className="description">Mouse</h2>
+                        <h5 className="description">ES Part:ESE-1234567890123456789012345 </h5>
                         <Row className="description">
-                          <Col>
-                            <h5>Mfg Part: </h5>
+                          <Col md={8}>
+                            <h5>Mfg Part:1234567890123456789012345 </h5>
                           </Col>
-                          <Col>
-                            <h5>Mfg: </h5>
+                          <Col md={4}>
+                            <h5>Mfg: Dell</h5>
                           </Col>
                         </Row>
                         <Row className="description">
-                          <Col>
+                          <Col md={8}>
                             <h5>Supplier: Flipkart</h5>
                           </Col>
-                          <Col>
+                          <Col md={4}>
                             <h5>Category:Mechanical</h5>
                           </Col>
                         </Row>

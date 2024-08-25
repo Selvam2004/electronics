@@ -47,6 +47,9 @@ const Home = () => {
     setFilter(data);
   };
 
+ 
+  
+
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/home/getItems`)
       .then(res => {
@@ -66,7 +69,9 @@ const Home = () => {
     <div>
       <UserNav />
       <div className="user-content">
+
         <h1>Welcome To Electro Solve</h1>
+
         <h3>Available Products</h3>
         <Container>
           <Row>
@@ -160,5 +165,6 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;

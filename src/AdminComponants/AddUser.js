@@ -83,7 +83,7 @@ const AddUser = () => {
               className="add-input"
               onChange={e=>setAccess(e.target.value)}
             >
-              <option>Select The Role</option>
+              <option>Select The Access</option>
               <option value="1">User</option>
               <option value="2">Administrator</option>
             </Form.Select>

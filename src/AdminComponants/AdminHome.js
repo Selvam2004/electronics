@@ -61,7 +61,12 @@ const AdminHome = () => {
     setModalShow(true);
   };
   const handleDelete = (item)=>{
-   
+    axios.post(`${process.env.REACT_APP_API}/dashboard/deleteProduct`,{_id:item._id},{withCredentials:true})
+    .then(res=>{
+      alert(res.data)
+      window.location.reload(true)
+  })
+    .catch(err=>console.log(err));
   }
   return (
     <div>

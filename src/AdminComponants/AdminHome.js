@@ -64,13 +64,20 @@ const AdminHome = () => {
     setSelectedItem(item);
     setModalShow(true);
   };
-  const handleDelete = (item)=>{
-    axios.post(`${process.env.REACT_APP_API}/dashboard/deleteProduct`,{_id:item._id},{withCredentials:true})
-    .then(res=>{
+  const handleDelete = (e,item)=>{
+    e.preventDefault();
+    const verify = prompt("Enter the product name to confirm");
+    if(verify===item.name){
+      axios.post(`${process.env.REACT_APP_API}/dashboard/deleteProduct`,{_id:item._id},{withCredentials:true})
+     .then(res=>{
       alert(res.data)
       window.location.reload(true)
-  })
+     })
     .catch(err=>console.log(err));
+    }
+    else{
+      alert('Product name not matched');
+    }
   }
   return (
     <div>
@@ -168,7 +175,7 @@ const AdminHome = () => {
                         </Button></Col>
                         <Col md={4}>
                          <Button
-                         onClick={()=>handleDelete(item)}
+                         onClick={(e)=>handleDelete(e,item)}
                           style={{
                             backgroundColor: "#FF7F7F",
                             border: "#26d3ff",

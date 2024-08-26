@@ -19,7 +19,7 @@ export default function Router() {
          <Route path="home" element={<AdminHome/>}/>
          <Route path="addProduct" element={<AddProduct/>}/>
          <Route path="addUser" element={<AddUser/>}/>
-         <Route path="producthistory" element={<ProductHistory/>}/>
+         <Route path="producthistory/:_id" element={<ProductHistory/>}/>
 
         </Route>
     </Routes>

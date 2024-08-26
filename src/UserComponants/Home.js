@@ -100,7 +100,7 @@ const Home = () => {
           </Row>
         </Container>
         {
-          filter.map((item, index) => (
+          filter.filter(item=>item.available>0).map((item, index) => (
             <div className="card-main-div" key={index}>
               <div className="card-div">
                 <Card className="card-comp" style={{ width: "80%", backgroundColor: "#a9edff" }}>

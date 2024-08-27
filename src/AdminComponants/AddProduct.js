@@ -11,17 +11,19 @@ const AddProduct = () => {
   const [category,setCategory]=useState();
   const [available,setAvailable]=useState();
   const [imgUrl,setImageURL]=useState();
-  const [linkToBuy,setLinkToBuy]=useState();
+  const [linkToBuy1,setLinkToBuy1]=useState();
+  const [linkToBuy2,setLinkToBuy2]=useState();
+  const[minimumqty,setminimumqty]=useState();
    
  
   const handleClick = (e)=>{
 
     e.preventDefault();
-    if(name==null||supplier==null||mfg==null||mfgpart==null||category==null||available==null||imgUrl==null||linkToBuy==null){
+    if(name==null||supplier==null||mfg==null||mfgpart==null||category==null||available==null||imgUrl==null||linkToBuy1==null||linkToBuy2==null||minimumqty==null){
       alert("Please Enter all Details");
     }
     else{
-      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy},{withCredentials:true})
+      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy1,linkToBuy2,minimumqty},{withCredentials:true})
       .then(res=>{
         alert(res.data)         
       })
@@ -126,12 +128,36 @@ const AddProduct = () => {
                 </Col>
                 <Col md={6} className='product-col'>
                 <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
-              <Form.Label>Link To Buy</Form.Label>
+              <Form.Label>Minimum no.of.Qty</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter the no.of Minimim Qty"
+                className="product-input"
+                onChange={e=>setminimumqty(e.target.value)}
+              />
+            </Form.Group>
+                </Col>
+            </Row>
+            <Row className='product-row'>
+                <Col md={6} className='product-col'>
+                <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
+              <Form.Label>Link TO Buy 1</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter Link To Buy"
                 className="product-input"
-                onChange={e=>setLinkToBuy(e.target.value)}
+                onChange={e=>setLinkToBuy1(e.target.value)}
+              />
+            </Form.Group>
+                </Col>
+                <Col md={6} className='product-col'>
+                <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
+              <Form.Label>Link To Buy 2</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Link To Buy"
+                className="product-input"
+                onChange={e=>setLinkToBuy2(e.target.value)}
               />
             </Form.Group>
                 </Col>

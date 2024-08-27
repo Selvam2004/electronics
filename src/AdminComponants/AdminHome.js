@@ -9,7 +9,7 @@ import { Container } from 'react-bootstrap';
 import '../css/AdminHome.css'
 import ProductEditmodal from './ProductEditmodal';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axios from 'axios'; 
 const AdminHome = () => {
   const[modalShow,setModalShow]=useState(false) 
   const [selectedItem, setSelectedItem] = useState(null); 
@@ -56,17 +56,28 @@ const AdminHome = () => {
     // eslint-disable-next-line 
   }, []);
   const navigate=useNavigate();
+  const handleClick=(e,_id)=>{
+    e.preventDefault();
+    navigate(`/dashboard/producthistory/${_id}`)
+  }
   const handleModalShow = (item) => {
     setSelectedItem(item);
     setModalShow(true);
   };
-  const handleDelete = (item)=>{
-    axios.post(`${process.env.REACT_APP_API}/dashboard/deleteProduct`,{_id:item._id},{withCredentials:true})
-    .then(res=>{
+  const handleDelete = (e,item)=>{
+    e.preventDefault();
+    const verify = prompt("Enter the product name to confirm");
+    if(verify===item.name){
+      axios.post(`${process.env.REACT_APP_API}/dashboard/deleteProduct`,{_id:item._id},{withCredentials:true})
+     .then(res=>{
       alert(res.data)
       window.location.reload(true)
-  })
+     })
     .catch(err=>console.log(err));
+    }
+    else{
+      alert('Product name not matched');
+    }
   }
   return (
     <div>
@@ -103,7 +114,7 @@ const AdminHome = () => {
           </Row>
           {
           filter.map((item, index) => (
-         <div className="card-main-div" >
+         <div className="card-main-div"  key={index}>
               <div className="card-div">
                 <Card className="card-comp" style={{ width: "90%", backgroundColor: "#a9edff" }}>
                   <Card.Body className="card-body">
@@ -134,21 +145,21 @@ const AdminHome = () => {
                         </Row>
                         <h5 className="description">Available Quantity:{item.available}</h5>
                        <Row style={{margin:'10px'}}>
-                        <Col md={4}>
-                         <Button
-                         
-                          style={{
+                        <Col md={4}> 
+                         <Button                         
+                          style={{ 
+                            
                             backgroundColor: "#26d3ff",
                             border: "#26d3ff",
                             float: "right",
                             padding: "13px",
                             color: "black",
-                          }}
-                          onClick={()=>navigate("/dashboard/producthistory")}
-
+                          }} 
+                          onClick={(e) => handleClick(e, item._id)} 
                         >
                            Product History
-                        </Button></Col>
+                        </Button>
+                        </Col>
                         <Col md={4}>
                          <Button
                           onClick={() => handleModalShow(item)}
@@ -164,7 +175,7 @@ const AdminHome = () => {
                         </Button></Col>
                         <Col md={4}>
                          <Button
-                         onClick={()=>handleDelete(item)}
+                         onClick={(e)=>handleDelete(e,item)}
                           style={{
                             backgroundColor: "#FF7F7F",
                             border: "#26d3ff",

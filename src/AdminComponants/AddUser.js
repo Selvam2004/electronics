@@ -96,8 +96,8 @@ const AddUser = () => {
               value={access}
             >
               <option>Select The Access</option>
-              <option value="1">User</option>
-              <option value="2">Administrator</option>
+              <option value="user">User</option>
+              <option value="admin">Administrator</option>
             </Form.Select>
             </Form.Group>
             <div className="btn-div">

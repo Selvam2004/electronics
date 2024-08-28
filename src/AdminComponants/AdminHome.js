@@ -57,8 +57,9 @@ const AdminHome = () => {
   const navigate=useNavigate();
   const handleClick=(e,_id)=>{
     e.preventDefault();
+    console.log(_id);
     navigate(`/dashboard/producthistory/${_id}`)
-  }
+  } 
   const handleModalShow = (item) => {
     setSelectedItem(item);
     setModalShow(true);
@@ -120,7 +121,7 @@ const AdminHome = () => {
                     <Row style={{ width: "100%" }}>
                       <Col md={3} xs={12}>
                         <div className="img-div">
-                          <img src={item.imgUrl} className="card-img" alt={item.name} />
+                          <img src={item.image} className="card-img" alt={item.name} />
                         </div>
                       </Col>
                       <Col md={9} xs={12} className="product-desp">
@@ -151,10 +152,10 @@ const AdminHome = () => {
                             backgroundColor: "#26d3ff",
                             border: "#26d3ff",
                             float: "right",
-                            padding: "13px",
+                            padding: "13px", 
                             color: "black",
                           }} 
-                          onClick={(e) => handleClick(e, item._id)} 
+                          onClick={(e) => handleClick(e,item._id)} 
                         >
                            Product History
                         </Button>

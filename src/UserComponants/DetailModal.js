@@ -1,4 +1,4 @@
-import React, {  useState } from 'react' 
+import React, {  useEffect, useState } from 'react' 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,17 @@ const DetailModal = (props) => {
   const [projectName,setProjectName] = useState();
   const [quantity,setQuantity] = useState();
   const [isDisabled,setIsDisabled] = useState(false);
+  const [userName,setUserName]=useState("")
+  useEffect(()=>{
+    axios
+    .get(`${process.env.REACT_APP_API}/home/userData`, {
+      withCredentials: true,
+    })
+    .then((res) => { 
+        setUserName(res.data.name)
+    })
+    .catch((err) => console.log(err));
+  },[]);
   const handleSubmit = async (e) => { 
     e.preventDefault();
     setIsDisabled(true);
@@ -17,7 +28,8 @@ const DetailModal = (props) => {
             mfg: props.mfg,
             designerName: designerName,
             projectName: projectName,
-            quantity: quantity
+            quantity: quantity,
+            takenBy:userName
         });
         
         alert(response.data);  

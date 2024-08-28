@@ -16,7 +16,7 @@ const ProductHistory = () => {
          })
          .catch(err=>console.log(err))
          // eslint-disable-next-line
-    },[]) 
+    },[])  
   return (
     <div className='main-div' >
         <div className='admin-head'>
@@ -29,6 +29,7 @@ const ProductHistory = () => {
                 <tr className='table-head'>
                     <th className='t-h'>Project Name</th>
                     <th className='t-h'>Designer Name</th>
+                    <th className='t-h'>Taken By</th>
                     <th className='t-h'>Quantity</th>
                     <th className='t-h'>Project Created</th>
                     <th className='t-h'>Product Claimed</th>
@@ -47,6 +48,7 @@ const ProductHistory = () => {
                         
                                     <td>{project.projectName}</td> 
                                     <td>{project.designerName}</td>
+                                    <td>{item.takenBy}</td>
                                     <td key={itemIndex}> {item.quantity}</td>
                                     <td> {project.createdAt}</td>
                                     <td> {item.dateofTaken}</td>

@@ -1,45 +1,69 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const PendingOrders = () => {
+  const [items, setItems] = useState([]);
+  const [filteredItem, setfilteredItem] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API}/home/getItems`)
+      .then((res) => {
+        setItems(res.data);
+        filter();
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  const filter = () => {
+    const filter = items.filter((d) => d.available <= d.minQuantity);
+    setfilteredItem(filter);
+  };
   return (
     <div>
-       <div className='main-div-history' >
-      <div className='admin-head'>
+      <div className="main-div-history">
+        <div className="admin-head">
           <h2>Pending Orders</h2>
-          <div className='line-admin-project'></div>
-      </div>
-      <div className='table-div'>
-          <table className='history-table'>
-              <thead>
-              <tr className='table-head'>
-                  <th className='t-h'>Name</th>
-                  <th className='t-h'>Es-Part</th>
-                  <th className='t-h'>Available Qty</th>
-                  <th className='t-h'>Minimum Qty</th>
-                  <th className='t-h'>Link To Buy 1</th>
-                  <th className='t-h'>Link To Buy 2</th>
+          <div className="line-admin-project"></div>
+        </div>
+        <div className="table-div">
+          <table className="history-table">
+            <thead>
+              <tr className="table-head">
+                <th className="t-h">Name</th>
+                <th className="t-h">Es-Part</th>
+                <th className="t-h">Available Qty</th>
+                <th className="t-h">Minimum Qty</th>
+                <th className="t-h">Link To Buy 1</th>
+                <th className="t-h">Link To Buy 2</th>
               </tr>
-              </thead>
-              <tbody>
-              <tr className='table-head-data' >
-                      
-                      <td>Mouse</td>
-                      <td>Es1234567890123456789012345</td> 
-                      <td>2</td> 
-                      <td>5</td> 
-                      <td>url1</td>
-                      <td>url2</td>
-                      
-                  </tr>
-              </tbody>
-    
-
+            </thead>
+            <tbody>
+              {filteredItem && Array.isArray(filteredItem) ? (
+                filteredItem.map((index,keyval) => {
+                  return (
+                    <tr className="table-head-data" key={keyval}>
+                      <td>{index.name}</td>
+                      <td>{index.espart}</td>
+                      <td>{index.available}</td>
+                      <td>{index.minQuantity}</td>
+                      <td><a href={index.linkToBuy}>url1</a></td>
+                      <td><a href={index.linkToBuy2}>url2</a></td>
+                    </tr>
+                  
+                  );
+                })
+              ) : (
+                <tr>
+                  <td></td>
+                  <td className="text-center">No data available to Display</td>
+                </tr>
+              )}
+            </tbody>
           </table>
+        </div>
       </div>
-    
-  </div>
     </div>
-  )
-}
+  );
+};
 
-export default PendingOrders
+export default PendingOrders;

@@ -14,7 +14,7 @@ const AdminHistory = () => {
                 <tr className='table-head'>
                     <th className='t-h'>Name</th>
                     <th className='t-h'>Es-Part</th>
-                    <th className='t-h'>Time</th>
+                    <th className='t-h'>Date</th>
                     <th className='t-h'>Quantity</th>
                     <th className='t-h'>Added By</th>
                 </tr>

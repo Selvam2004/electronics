@@ -98,7 +98,7 @@ const AdminNavbar = () => {
                 onClick={(e) => handleNavItemClick(e, "/dashboard/pendingorders")}
                 className="item"
               >
-                <span className="ms-2 d-none d-sm-inline ">Pending Orders</span>
+                <span className="ms-2 d-none d-sm-inline ">To Be Ordered</span>
               </Nav.Link>
             </Nav.Item>
           </Nav>

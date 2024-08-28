@@ -5,7 +5,7 @@ const ProjectDetails = () => {
     <div>
           <div className='main-div-history' >
       <div className='admin-head'>
-          <h2>Project Taken</h2>
+          <h2>Product Taken</h2>
           <div className='line-admin-taken'></div>
       </div>
       <div className='table-div'>

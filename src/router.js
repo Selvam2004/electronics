@@ -27,7 +27,7 @@ export default function Router() {
          <Route path="producthistory/:_id" element={<ProductHistory/>}/>
          <Route path='history' element={<AdminHistory/>}/>
          <Route path='project' element={<ProjectHistory/>}/>
-         <Route path='projectdetails' element={<ProjectDetails/>}/>
+         <Route path='projectdetails/:id' element={<ProjectDetails/>}/>
          <Route path='pendingorders' element={<PendingOrders/>}/>
 
         </Route>

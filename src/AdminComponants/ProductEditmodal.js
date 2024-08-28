@@ -12,11 +12,13 @@ const ProductEditmodal = (props) => {
   const [supplier,setSupplier]=useState(props.supplier);
   const [category,setCategory]=useState(props.category);
   const [imgUrl,setImgUrl]=useState(props.imgUrl);
-  const [linkToBuy,setLinkToBuy]=useState(props.linkToBuy);
+  const [linkToBuy1,setLinkToBuy1]=useState(props.linkToBuy1);
+  const [linkToBuy2,setLinkToBuy2]=useState(props.linkToBuy2);
   const [available,setAvailable]=useState(props.available);
+  const[minimumqty,setminimumqty]=useState(props.minQuantity);
   console.log(props)
   const handleClick = ()=>{
-    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy,imgUrl,category,available},{withCredentials:true})
+    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy1,linkToBuy2,minimumqty,imgUrl,category,available},{withCredentials:true})
     .then(res=>{
       alert(res.data)
       window.location.reload(true);
@@ -131,13 +133,13 @@ const ProductEditmodal = (props) => {
               <Col md={6}>
                 <Form.Group className="mb-3 ">
                   <Form.Label>
-                    <h5>Link To Buy</h5>
+                    <h5>Minimum no.of Qty</h5>
                   </Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter the Link To Buy"
-                    value={linkToBuy}
-                    onChange={e=>setLinkToBuy(e.target.value)}
+                    value={minimumqty}
+                    onChange={e=>setminimumqty(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -151,6 +153,34 @@ const ProductEditmodal = (props) => {
                     placeholder="Enter the Image Url"
                     value={imgUrl}
                     onChange={e=>setImgUrl(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3 ">
+                  <Form.Label>
+                    <h5>Link To Buy 1</h5>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter the Link To Buy"
+                    value={linkToBuy1}
+                    onChange={e=>setLinkToBuy1(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>
+                    <h5>Link To Buy 2</h5>
+                  </Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter the Image Url"
+                    value={linkToBuy2}
+                    onChange={e=>setLinkToBuy2(e.target.value)}
                   />
                 </Form.Group>
               </Col>

@@ -77,15 +77,19 @@ const AddUser = () => {
                 value={password}
               />
             </Form.Group>
-            <Form.Group className="mb-3 form-group"  controlId="formBasicEmail" >
+            <Form.Group className="mb-3 form-group" >
               <Form.Label>Designation</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Designation"
-                className="add-input"
-                onChange={e=>setDesignation(e.target.value)}
-                value={designation}
-              />
+              <Form.Select
+              aria-label="Default select example"
+              className="add-input"
+              onChange={e=>setDesignation(e.target.value)}
+              value={designation}
+            >
+              <option>Select The Designation</option>
+              <option value="CEO">CEO</option>
+              <option value="Senior Manager">Senior Manager</option>
+              <option value="Junior Developer">Junior Developer</option>
+            </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3 form-group" >
               <Form.Label>Access</Form.Label>

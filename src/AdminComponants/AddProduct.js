@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, {   useEffect, useState } from 'react'
 import '../css/AddProduct.css'
 import Form from "react-bootstrap/Form";
 import { Col, Row } from 'react-bootstrap'; 
@@ -10,24 +10,56 @@ const AddProduct = () => {
   const [mfgpart,setMfgpart]=useState("");
   const [category,setCategory]=useState("");
   const [available,setAvailable]=useState("");
-  const [imgUrl,setImageURL]=useState("");
+  const [image, setImage] = useState(null);
   const [linkToBuy,setLinkToBuy1]=useState("");
   const [linkToBuy2,setLinkToBuy2]=useState("");
   const[minQuantity,setminimumqty]=useState("");
-   
-  
+  const [userName,setUserName]=useState("")
+useEffect(()=>{
+  axios
+  .get(`${process.env.REACT_APP_API}/home/userData`, {
+    withCredentials: true,
+  })
+  .then((res) => { 
+      setUserName(res.data.name)
+  })
+  .catch((err) => console.log(err));
+},[]);
+  const handleFileChange = (e) => {
+    setImage(e.target.files[0]);
+  };
   const handleClick = (e)=>{
 
     e.preventDefault();
-    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||imgUrl===""||linkToBuy===""||linkToBuy2===""||minQuantity===""){
+    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||image==null||linkToBuy===""||linkToBuy2===""||minQuantity===""){
       alert("Please Enter all Details");
     }
     else{
-      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy,linkToBuy2,minQuantity},{withCredentials:true})
-      .then(res=>{
-        alert(res.data)         
-      })
-      .catch(err=>console.log(err));
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('supplier', supplier);
+      formData.append('mfg', mfg);
+      formData.append('mfgpart', mfgpart);
+      formData.append('available', available);
+      formData.append('linkToBuy', linkToBuy);
+      formData.append('linkToBuy2', linkToBuy2); 
+      formData.append('image', image);
+      formData.append('minQuantity', minQuantity);
+      formData.append('category', category);
+      formData.append('userName', userName);
+      try{
+        axios.post(`${process.env.REACT_APP_API}/home/addItems`,formData,{
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }},{withCredentials:true})
+        .then(res=>{
+          alert(res.data)         
+        })
+        .catch(err=>console.log(err));
+      }
+        catch(err){
+          console.log(err)
+       }
     }
   }  
   return (
@@ -37,6 +69,7 @@ const AddProduct = () => {
           <h1>Enter The Product Details</h1>
           <div className="line-product"></div>
         </div>
+  
         <div className='product-div'> 
             <Row className='product-row'>
                 <Col md={6} className='product-col'>
@@ -117,12 +150,12 @@ const AddProduct = () => {
             <Row className='product-row'>
                 <Col md={6} className='product-col'>
                 <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
-              <Form.Label>Image Url</Form.Label>
+              <Form.Label>Image </Form.Label>
               <Form.Control
-                type="text"
+                type="file"
                 placeholder="Enter Image Url"
                 className="product-input"
-                onChange={e=>setImageURL(e.target.value)}
+                onChange={handleFileChange}
               />
             </Form.Group>
                 </Col>

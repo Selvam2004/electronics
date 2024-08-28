@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -10,15 +10,24 @@ const ProductEditmodal = (props) => {
   const [mfg,setMfg]=useState(props.mfg);
   const [mfgpart,setMfgpart]=useState(props.mfgpart);
   const [supplier,setSupplier]=useState(props.supplier);
-  const [category,setCategory]=useState(props.category);
-  const [imgUrl,setImgUrl]=useState(props.imgUrl);
+  const [category,setCategory]=useState(props.category); 
   const [linkToBuy,setLinkToBuy1]=useState(props.linkToBuy);
   const [linkToBuy2,setLinkToBuy2]=useState(props.linkToBuy2);
   const [available,setAvailable]=useState(props.available);
   const[minQuantity,setminimumqty]=useState(props.minQuantity);
-  console.log(props)
+  const [userName,setUserName]=useState("")
+  useEffect(()=>{
+    axios
+    .get(`${process.env.REACT_APP_API}/home/userData`, {
+      withCredentials: true,
+    })
+    .then((res) => { 
+        setUserName(res.data.name)
+    })
+    .catch((err) => console.log(err));
+  },[]);
   const handleClick = ()=>{
-    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy,linkToBuy2,minQuantity,imgUrl,category,available},{withCredentials:true})
+    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy,linkToBuy2,minQuantity,category,available,userName},{withCredentials:true})
     .then(res=>{
       alert(res.data)
       window.location.reload(true);
@@ -144,21 +153,6 @@ const ProductEditmodal = (props) => {
                 </Form.Group>
               </Col>
               <Col md={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>
-                    <h5>Image Url</h5>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Enter the Image Url"
-                    value={imgUrl}
-                    onChange={e=>setImgUrl(e.target.value)}
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col md={6}>
                 <Form.Group className="mb-3 ">
                   <Form.Label>
                     <h5>Link To Buy 1</h5>
@@ -170,7 +164,11 @@ const ProductEditmodal = (props) => {
                     onChange={e=>setLinkToBuy1(e.target.value)}
                   />
                 </Form.Group>
-              </Col>
+                </Col>
+            </Row>
+            <Row>
+
+              
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label>

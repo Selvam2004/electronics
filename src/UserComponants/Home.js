@@ -52,6 +52,7 @@ const Home = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API}/home/getItems`)
       .then(res => {
+        console.log(res.data)
         setItems(res.data);
         setFilter(res.data);
       })
@@ -107,7 +108,7 @@ const Home = () => {
                     <Row style={{ width: "100%" }}>
                       <Col md={4} xs={12}>
                         <div className="img-div">
-                          <img src={item.imgUrl} className="card-img" alt={item.name} />
+                          <img src={item.image} className="card-img" alt={item.name} />
                         </div>
                       </Col>
                       <Col md={8} xs={12} className="product-desp">

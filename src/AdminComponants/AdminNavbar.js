@@ -74,6 +74,33 @@ const AdminNavbar = () => {
                 <span className="ms-2 d-none d-sm-inline ">Add Product</span>
               </Nav.Link>
             </Nav.Item>
+            <Nav.Item className="nav-item">
+              <Nav.Link
+                eventKey="/dashboard/history"
+                onClick={(e) => handleNavItemClick(e, "/dashboard/history")}
+                className="item"
+              >
+                <span className="ms-2 d-none d-sm-inline ">History</span>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="nav-item">
+              <Nav.Link
+                eventKey="/dashboard/project"
+                onClick={(e) => handleNavItemClick(e, "/dashboard/project")}
+                className="item"
+              >
+                <span className="ms-2 d-none d-sm-inline ">Project</span>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item className="nav-item">
+              <Nav.Link
+                eventKey="/dashboard/pendingorders"
+                onClick={(e) => handleNavItemClick(e, "/dashboard/pendingorders")}
+                className="item"
+              >
+                <span className="ms-2 d-none d-sm-inline ">Pending Orders</span>
+              </Nav.Link>
+            </Nav.Item>
           </Nav>
           <div className="btm-div">
           <Dropdown drop="up" className="w-100">

@@ -1,6 +1,18 @@
-import React from 'react'
+import axios from "axios";
+import { useEffect, useState } from "react"
+
+ 
 
 const AdminHistory = () => {
+  const [items,setItems]=useState(null);
+  useEffect(()=>{
+    axios
+    .get(`${process.env.REACT_APP_API}/home/getItems`)
+    .then((res) => {
+      setItems(res.data);   
+    })
+    .catch((err) => console.log(err.message));
+  },[])
   return (
     <div>
       <div className='main-div-history' >
@@ -20,15 +32,27 @@ const AdminHistory = () => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr className='table-head-data' >
+                 
+                        {
+                          items && Array.isArray(items)?items.map((item,index)=>{
+                            return (
+                              item.history && Array.isArray(item.history)?item.history.map((logs,historyIndex)=>{
+                                     return (
+                                      <tr className='table-head-data'key={index} >
+                                      <td key={historyIndex}>{item.name}</td>
+                                      <td>{item.espart}</td> 
+                                      <td>{logs.dateofAdding}</td> 
+                                      <td>{logs.quantity}</td> 
+                                      <td>{logs.addedBy}</td>
+                                      </tr>
+                                     )
+                              }):<td>No data to display</td>
+                            )
+                          }):<td>No data available</td>
+                        }
+
                         
-                        <td>Mouse</td>
-                        <td>Es1234567890123456789012345</td> 
-                        <td>12.05.2024</td> 
-                        <td>5</td> 
-                        <td>Munish</td>
-                        
-                    </tr>
+                    
                 </tbody>
       
 

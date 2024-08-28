@@ -31,7 +31,7 @@ const AddProduct = () => {
     }
   }  
   return (
-    <div>
+    <div> 
       <div className='main-div-product'>
       <div className="title-div">
           <h1>Enter The Product Details</h1>

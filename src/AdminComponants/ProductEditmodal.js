@@ -146,7 +146,7 @@ const ProductEditmodal = (props) => {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter the Link To Buy"
+                    placeholder="Enter the Minimum quantity"
                     value={minQuantity}
                     onChange={e=>setminimumqty(e.target.value)}
                   />
@@ -176,7 +176,7 @@ const ProductEditmodal = (props) => {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter the Image Url"
+                    placeholder="Enter the Link To Buy"
                     value={linkToBuy2}
                     onChange={e=>setLinkToBuy2(e.target.value)}
                   />

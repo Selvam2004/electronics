@@ -8,16 +8,14 @@ const PendingOrders = () => {
     axios
       .get(`${process.env.REACT_APP_API}/home/getItems`)
       .then((res) => {
-        setItems(res.data);
-        filter();
+        setItems(res.data); 
+        const filter = items.filter((d) => d.available <= d.minQuantity);
+        setfilteredItem(filter);
       })
       .catch((err) => console.log(err.message));
-  }, []);
+  }, [items]);
 
-  const filter = () => {
-    const filter = items.filter((d) => d.available <= d.minQuantity);
-    setfilteredItem(filter);
-  };
+
   return (
     <div>
       <div className="main-div-history">

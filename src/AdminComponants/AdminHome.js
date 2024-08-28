@@ -206,8 +206,9 @@ const AdminHome = () => {
             category={selectedItem.category}
             mfg={selectedItem.mfg}
             available={selectedItem.available}
-            imgUrl={selectedItem.imgUrl}
+            minQuantity={selectedItem.minQuantity}
             linkToBuy={selectedItem.linkToBuy}
+            linkToBuy2={selectedItem.linkToBuy2}
             onHide={() => setModalShow(false)}
           />
          )}

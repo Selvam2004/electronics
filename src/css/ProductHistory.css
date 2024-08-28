@@ -31,5 +31,6 @@
 
 .table-head-data td{
   padding: 15px;
-  border: 5px solid #a9edff;
+  border: 3px solid #a9edff;
+  border-radius: 12px;
 }

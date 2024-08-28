@@ -11,19 +11,19 @@ const AddProduct = () => {
   const [category,setCategory]=useState("");
   const [available,setAvailable]=useState("");
   const [imgUrl,setImageURL]=useState("");
-  const [linkToBuy1,setLinkToBuy1]=useState("");
+  const [linkToBuy,setLinkToBuy1]=useState("");
   const [linkToBuy2,setLinkToBuy2]=useState("");
   const[minQuantity,setminimumqty]=useState("");
    
- 
+  
   const handleClick = (e)=>{
 
     e.preventDefault();
-    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||imgUrl===""||linkToBuy1===""||linkToBuy2===""||minQuantity===""){
+    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||imgUrl===""||linkToBuy===""||linkToBuy2===""||minQuantity===""){
       alert("Please Enter all Details");
     }
     else{
-      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy1,linkToBuy2,minQuantity},{withCredentials:true})
+      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy,linkToBuy2,minQuantity},{withCredentials:true})
       .then(res=>{
         alert(res.data)         
       })
@@ -131,7 +131,7 @@ const AddProduct = () => {
               <Form.Label>Minimum no.of.Qty</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter the no.of Minimim Qty"
+                placeholder="Enter the no.of Minimum Qty"
                 className="product-input"
                 onChange={e=>setminimumqty(e.target.value)}
               />

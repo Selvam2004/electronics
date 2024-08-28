@@ -12,13 +12,13 @@ const ProductEditmodal = (props) => {
   const [supplier,setSupplier]=useState(props.supplier);
   const [category,setCategory]=useState(props.category);
   const [imgUrl,setImgUrl]=useState(props.imgUrl);
-  const [linkToBuy1,setLinkToBuy1]=useState(props.linkToBuy1);
+  const [linkToBuy,setLinkToBuy1]=useState(props.linkToBuy);
   const [linkToBuy2,setLinkToBuy2]=useState(props.linkToBuy2);
   const [available,setAvailable]=useState(props.available);
   const[minQuantity,setminimumqty]=useState(props.minQuantity);
   console.log(props)
   const handleClick = ()=>{
-    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy1,linkToBuy2,minQuantity,imgUrl,category,available},{withCredentials:true})
+    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy,linkToBuy2,minQuantity,imgUrl,category,available},{withCredentials:true})
     .then(res=>{
       alert(res.data)
       window.location.reload(true);
@@ -166,7 +166,7 @@ const ProductEditmodal = (props) => {
                   <Form.Control
                     type="text"
                     placeholder="Enter the Link To Buy"
-                    value={linkToBuy1}
+                    value={linkToBuy}
                     onChange={e=>setLinkToBuy1(e.target.value)}
                   />
                 </Form.Group>

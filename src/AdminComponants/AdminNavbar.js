@@ -7,7 +7,10 @@ import { Dropdown } from "react-bootstrap";
 import axios from "axios";
 const AdminNavbar = () => {
   const [activeKey, setActiveKey] = useState("/dashboard/home");
-  const navigate = useNavigate();
+  const [name,setName]=useState();
+  const [email,setEmail]=useState();
+  const [designation,setDesignation]=useState();
+  const navigate = useNavigate(); 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API}/home/userData`, {
@@ -15,6 +18,9 @@ const AdminNavbar = () => {
       })
       .then((res) => {
         if (res.data.status === "Success" && res.data.access === "admin") {
+          setName(res.data.name);
+          setEmail(res.data.email);
+          setDesignation(res.data.designation);
           navigate(activeKey);
         } else {
           console.log(res.data);
@@ -80,14 +86,15 @@ const AdminNavbar = () => {
                 alt="user--v1"
               />
             </div>
-            <h4>Munish</h4>
+            <h4>{name}</h4>
           </div>
         </Dropdown.Toggle>
 
-        <Dropdown.Menu className="w-100">
-          <Dropdown.Item href="#/action-1">Munish</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">munish@gmail.com</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>
+        <Dropdown.Menu className="w-100"> 
+          <Dropdown.Item>{email}</Dropdown.Item>
+          <Dropdown.Item href={"/forgotPassword/"+email}>Reset Password</Dropdown.Item>
+          <Dropdown.Item>{designation}</Dropdown.Item>
+          <Dropdown.Item href="/" >Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </div>

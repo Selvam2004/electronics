@@ -30,6 +30,8 @@ const ProductHistory = () => {
                     <th className='t-h'>Project Name</th>
                     <th className='t-h'>Designer Name</th>
                     <th className='t-h'>Quantity</th>
+                    <th className='t-h'>Project Created</th>
+                    <th className='t-h'>Product Claimed</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,9 +47,9 @@ const ProductHistory = () => {
                         
                                     <td>{project.projectName}</td> 
                                     <td>{project.designerName}</td>
-                                <td key={itemIndex}>
-                                    {item.quantity} 
-                                </td>
+                                    <td key={itemIndex}> {item.quantity}</td>
+                                    <td> {project.createdAt}</td>
+                                    <td> {item.dateofTaken}</td>
                                 </tr> )
                              }) : <td></td>  
                 

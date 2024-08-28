@@ -3,21 +3,21 @@ import "../css/AddUser.css";
 import Form from "react-bootstrap/Form"; 
 import axios from "axios";
 const AddUser = () => {
-  const [name,setName]= useState();
-  const [email,setEmail]= useState();
-  const [password,setPassword]= useState();
-  const [designation,setDesignation]= useState();
-  const [access,setAccess]= useState();
-  const [removeEmail,setRemoveEmail]= useState();
+  const [name,setName]= useState("");
+  const [email,setEmail]= useState("");
+  const [password,setPassword]= useState("");
+  const [designation,setDesignation]= useState("");
+  const [access,setAccess]= useState("");
+  const [removeEmail,setRemoveEmail]= useState("");
   const handleClick=(e)=>{
-    e.preventDefault();
-    if(name===null||email==null||password==null||designation==null||access==null){
+    e.preventDefault(); 
+    if(name===""||email===""||password===""||designation===""||access===""){
       alert("Please Enter all details to proceed");
     }
     else{
       axios.post(`${process.env.REACT_APP_API}/registerUser`,{name,email,password,designation,access},{withCredentials:true})
       .then((res)=>{
-        alert(res.data);
+        alert(res.data); 
         setName("");
         setEmail("");
         setPassword("");
@@ -29,12 +29,15 @@ const AddUser = () => {
   }
   const handleDelete =(e)=>{
     e.preventDefault();
-    if(removeEmail==null){
+    if(removeEmail===""){
       alert("Please Enter email to proceed");
     }
     else{
       axios.post(`${process.env.REACT_APP_API}/deleteUser`,{removeEmail},{withCredentials:true})
-      .then((res)=>alert(res.data))
+      .then((res)=>{
+        alert(res.data)
+        setRemoveEmail("")
+    })
       .catch(err=>console.log(err));
     }
   }
@@ -93,8 +96,7 @@ const AddUser = () => {
             </Form.Group>
             <Form.Group className="mb-3 form-group" >
               <Form.Label>Access</Form.Label>
-              <Form.Select
-              aria-label="Default select example"
+              <Form.Select 
               className="add-input"
               onChange={e=>setAccess(e.target.value)}
               value={access}

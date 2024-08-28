@@ -4,26 +4,26 @@ import Form from "react-bootstrap/Form";
 import { Col, Row } from 'react-bootstrap'; 
 import axios from 'axios';
 const AddProduct = () => {
-  const [name,setName]=useState();
-  const [supplier,setSupplier]=useState();
-  const [mfg,setMfg]=useState();
-  const [mfgpart,setMfgpart]=useState();
-  const [category,setCategory]=useState();
-  const [available,setAvailable]=useState();
-  const [imgUrl,setImageURL]=useState();
-  const [linkToBuy1,setLinkToBuy1]=useState();
-  const [linkToBuy2,setLinkToBuy2]=useState();
-  const[minimumqty,setminimumqty]=useState();
+  const [name,setName]=useState("");
+  const [supplier,setSupplier]=useState("");
+  const [mfg,setMfg]=useState("");
+  const [mfgpart,setMfgpart]=useState("");
+  const [category,setCategory]=useState("");
+  const [available,setAvailable]=useState("");
+  const [imgUrl,setImageURL]=useState("");
+  const [linkToBuy1,setLinkToBuy1]=useState("");
+  const [linkToBuy2,setLinkToBuy2]=useState("");
+  const[minQuantity,setminimumqty]=useState("");
    
  
   const handleClick = (e)=>{
 
     e.preventDefault();
-    if(name==null||supplier==null||mfg==null||mfgpart==null||category==null||available==null||imgUrl==null||linkToBuy1==null||linkToBuy2==null||minimumqty==null){
+    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||imgUrl===""||linkToBuy1===""||linkToBuy2===""||minQuantity===""){
       alert("Please Enter all Details");
     }
     else{
-      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy1,linkToBuy2,minimumqty},{withCredentials:true})
+      axios.post(`${process.env.REACT_APP_API}/home/addItems`,{name,supplier,mfg,mfgpart,category,available,imgUrl,linkToBuy1,linkToBuy2,minQuantity},{withCredentials:true})
       .then(res=>{
         alert(res.data)         
       })
@@ -98,7 +98,7 @@ const AddProduct = () => {
               <option>Select The Category</option>
               <option value="General">General</option>
               <option value="Mechanical">Mechanical</option>
-              <option value="Electrical">Electrical</option>
+              <option value="Electronics">Electronics</option>
             </Form.Select>
             </Form.Group>
                 </Col>

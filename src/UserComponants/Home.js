@@ -108,7 +108,7 @@ const Home = () => {
                     <Row style={{ width: "100%" }}>
                       <Col md={4} xs={12}>
                         <div className="img-div">
-                          <img src={card_img} className="card-img" alt="item-image" />
+                          <img src={item.imgUrl} className="card-img" alt={item.name} />
                         </div>
                       </Col>
                       <Col md={8} xs={12} className="product-desp">

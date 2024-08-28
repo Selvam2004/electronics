@@ -3,16 +3,17 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProjectDetails = () => {
-  const [projectdetails, setprojectdetails] = useState([]);
-  const id=useParams();
+  const [projectdetails, setprojectdetails] = useState([{}]);
+  const {id}=useParams();
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API}/dashboard/getprojectbyId/${id}`)
+      .get(`${process.env.REACT_APP_API}/dashboard/getProjectbyId/${id}`)
       .then((res) => {
         setprojectdetails(res.data);
-      })
+        console.log(res.data);
+      }) 
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
   return (
     <div>
       <div className="main-div-history">

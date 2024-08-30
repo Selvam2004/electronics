@@ -9,12 +9,14 @@ import '../css/AdminHome.css'
 import ProductEditmodal from './ProductEditmodal';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
+import Loader from '../loginComponent/Loader';
 const AdminHome = () => {
   const[modalShow,setModalShow]=useState(false) 
   const [selectedItem, setSelectedItem] = useState(null); 
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading,SetLoading] = useState(false);
 
   useEffect(() => {
     const data = items.filter((data) => {
@@ -46,10 +48,12 @@ const AdminHome = () => {
   };
 
   useEffect(() => {
+    SetLoading(true);
     axios.get(`${process.env.REACT_APP_API}/home/getItems`)
       .then(res => {
         setItems(res.data);
         setFilter(res.data);
+        SetLoading(false);
       })
       .catch(err => console.log(err.message));
     // eslint-disable-next-line 
@@ -112,6 +116,9 @@ const AdminHome = () => {
               <button className="badges" onClick={filterElectronics}>Electronics</button>
             </Col>
           </Row>
+          {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+
+          <div>
           {
           filter.map((item, index) => (
          <div className="card-main-div"  key={index}>
@@ -212,6 +219,8 @@ const AdminHome = () => {
             onHide={() => setModalShow(false)}
           />
          )}
+         </div>
+         }
       </Container>
       </div>
     </div>

@@ -1,16 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Loader from "../loginComponent/Loader";
 
 const PendingOrders = () => {
   const [items, setItems] = useState([]);
   const [filteredItem, setfilteredItem] = useState([]);
+  const [loading,SetLoading] = useState(false);
+
   useEffect(() => {
+    SetLoading(true);
     axios
       .get(`${process.env.REACT_APP_API}/home/getItems`)
       .then((res) => {
         setItems(res.data); 
         const filter = items.filter((d) => d.available <= d.minQuantity);
         setfilteredItem(filter);
+        SetLoading(false);
       })
       .catch((err) => console.log(err.message));
   }, [items]);
@@ -36,7 +41,9 @@ const PendingOrders = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredItem && Array.isArray(filteredItem) ? (
+            {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+
+              filteredItem && Array.isArray(filteredItem) ? (
                 filteredItem.map((index,keyval) => {
                   return (
                     <tr className="table-head-data" key={keyval}>
@@ -55,7 +62,8 @@ const PendingOrders = () => {
                   <td></td>
                   <td className="text-center">No data available to Display</td>
                 </tr>
-              )}
+              )
+              }
             </tbody>
           </table>
         </div>

@@ -3,6 +3,7 @@ import '../css/AddProduct.css'
 import Form from "react-bootstrap/Form";
 import { Col, Row } from 'react-bootstrap'; 
 import axios from 'axios';
+import Loader from '../loginComponent/Loader';
 const AddProduct = () => {
   const [name,setName]=useState("");
   const [supplier,setSupplier]=useState("");
@@ -15,6 +16,8 @@ const AddProduct = () => {
   const [linkToBuy2,setLinkToBuy2]=useState("");
   const[minQuantity,setminimumqty]=useState("");
   const [userName,setUserName]=useState("")
+  const [loading,SetLoading] = useState(false);
+
 useEffect(()=>{
   axios
   .get(`${process.env.REACT_APP_API}/home/userData`, {
@@ -47,13 +50,15 @@ useEffect(()=>{
       formData.append('minQuantity', minQuantity);
       formData.append('category', category);
       formData.append('userName', userName);
+      SetLoading(true);
       try{
         axios.post(`${process.env.REACT_APP_API}/home/addItems`,formData,{
           headers: {
             'Content-Type': 'multipart/form-data',
           }},{withCredentials:true})
         .then(res=>{
-          alert(res.data)         
+          alert(res.data)   
+          SetLoading(false);      
         })
         .catch(err=>console.log(err));
       }
@@ -69,7 +74,7 @@ useEffect(()=>{
           <h1>Enter The Product Details</h1>
           <div className="line-product"></div>
         </div>
-  
+        {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
         <div className='product-div'> 
             <Row className='product-row'>
                 <Col md={6} className='product-col'>
@@ -201,6 +206,7 @@ useEffect(()=>{
             </div>
             </Row>
         </div>
+        }
       </div>
     </div>
   )

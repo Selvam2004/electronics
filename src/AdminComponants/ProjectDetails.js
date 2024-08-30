@@ -1,16 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "../loginComponent/Loader";
 
 const ProjectDetails = () => {
   const [projectdetails, setprojectdetails] = useState([{}]);
   const {id}=useParams();
+  const [loading,SetLoading] = useState(false);
+
   useEffect(() => {
+    SetLoading(true);
     axios
       .get(`${process.env.REACT_APP_API}/dashboard/getProjectbyId/${id}`)
       .then((res) => {
         setprojectdetails(res.data);
-        console.log(res.data);
+        SetLoading(false);
       }) 
       .catch((err) => console.log(err));
   }, [id]);
@@ -33,7 +37,8 @@ const ProjectDetails = () => {
               </tr>
             </thead>
             <tbody>
-              {projectdetails && Array.isArray(projectdetails) ? (
+            {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+              projectdetails && Array.isArray(projectdetails) ? (
                 projectdetails.map((item, keyval) => {
                   return (
                     <tr className="table-head-data" key={keyval}>

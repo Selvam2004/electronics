@@ -1,15 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loader from "../loginComponent/Loader";
 
 const ProjectHistory = () => {
   const navigate = useNavigate();
   const [project, setproject] = useState([]);
+  const [loading,SetLoading] = useState(false);
+
   useEffect(() => {
+    SetLoading(true);
+
     axios
       .get(`${process.env.REACT_APP_API}/dashboard/getprojects`)
       .then((res) => {
         setproject(res.data);
+        SetLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -31,7 +37,8 @@ const ProjectHistory = () => {
               </tr>
             </thead>
             <tbody>
-              {project && Array.isArray(project) ? (
+            {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+              project && Array.isArray(project) ? (
                 project.map((item, keyval) => {
                   return (
                     <tr className="table-head-data" key={keyval}>

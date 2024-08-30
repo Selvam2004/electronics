@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap";
 import DetailModal from "./DetailModal";
 import UserFooter from "./UserFooter";
 import axios from "axios";
+import Loader from "../loginComponent/Loader";
 
 const Home = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -16,6 +17,7 @@ const Home = () => {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading,SetLoading] = useState(false);
 
   useEffect(() => {
     const data = items.filter((data) => {
@@ -50,11 +52,13 @@ const Home = () => {
   
 
   useEffect(() => {
+    SetLoading(true);
     axios.get(`${process.env.REACT_APP_API}/home/getItems`)
       .then(res => {
         console.log(res.data)
         setItems(res.data);
         setFilter(res.data);
+        SetLoading(false)
       })
       .catch(err => console.log(err.message));
     // eslint-disable-next-line 
@@ -99,6 +103,8 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
+        {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+        <div>
         {
           filter.filter(item=>item.available>0).map((item, index) => (
             <div className="card-main-div" key={index}>
@@ -159,7 +165,8 @@ const Home = () => {
             mfg={selectedItem.mfg}
             onHide={() => setModalShow(false)}
           />
-        )}
+        )}</div>
+      }
       </div>
       <UserFooter />
     </div>

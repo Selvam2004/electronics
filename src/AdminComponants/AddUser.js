@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/AddUser.css";
 import Form from "react-bootstrap/Form"; 
 import axios from "axios";
+import Loader from "../loginComponent/Loader";
 const AddUser = () => {
   const [name,setName]= useState("");
   const [email,setEmail]= useState("");
@@ -9,12 +10,16 @@ const AddUser = () => {
   const [designation,setDesignation]= useState("");
   const [access,setAccess]= useState("");
   const [removeEmail,setRemoveEmail]= useState("");
+  const [loading,SetLoading] = useState(false);
+  const [loading2,SetLoading2] = useState(false);
+
   const handleClick=(e)=>{
     e.preventDefault(); 
     if(name===""||email===""||password===""||designation===""||access===""){
       alert("Please Enter all details to proceed");
     }
     else{
+      SetLoading(true);
       axios.post(`${process.env.REACT_APP_API}/registerUser`,{name,email,password,designation,access},{withCredentials:true})
       .then((res)=>{
         alert(res.data); 
@@ -23,6 +28,7 @@ const AddUser = () => {
         setPassword("");
         setDesignation("");
         setAccess("");
+        SetLoading(false);
     })
       .catch(err=>console.log(err));
     }
@@ -33,10 +39,12 @@ const AddUser = () => {
       alert("Please Enter email to proceed");
     }
     else{
+      SetLoading2(true);
       axios.post(`${process.env.REACT_APP_API}/deleteUser`,{removeEmail},{withCredentials:true})
       .then((res)=>{
         alert(res.data)
         setRemoveEmail("")
+        SetLoading2(false);
     })
       .catch(err=>console.log(err));
     }
@@ -48,6 +56,8 @@ const AddUser = () => {
           <h1>Enter The User Details</h1>
           <div className="line"></div>
         </div>
+        {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+
         <div className="add-div">
           <form className="user-form">
             <Form.Group className="mb-3 form-group " controlId="formBasicEmail">
@@ -111,6 +121,9 @@ const AddUser = () => {
             </div>
           </form>
         </div>
+      }
+         {loading2? <div style={{minHeight:"50vh"}}><Loader/></div>:
+
         <div className="user-delete-div">
         <div className="title-div">
           <h1>Delete User</h1>
@@ -133,6 +146,7 @@ const AddUser = () => {
           </form>
         </div>
         </div>
+        }
       </div>
     </div>
   );

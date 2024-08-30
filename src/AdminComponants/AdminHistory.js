@@ -1,15 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
+import Loader from "../loginComponent/Loader";
 
  
 
 const AdminHistory = () => {
   const [items,setItems]=useState(null);
+  const [loading,SetLoading] = useState(false);
+
   useEffect(()=>{
+    SetLoading(true);
     axios
     .get(`${process.env.REACT_APP_API}/home/getItems`)
     .then((res) => {
-      setItems(res.data);   
+      setItems(res.data);  
+      SetLoading(false); 
     })
     .catch((err) => console.log(err.message));
   },[])
@@ -32,8 +37,9 @@ const AdminHistory = () => {
                 </tr>
                 </thead>
                 <tbody>
-                 
-                        {
+                {loading? <div style={{minHeight:"50vh"}}><Loader/></div>:
+
+                        
                           items && Array.isArray(items)?items.map((item,index)=>{
                             return (
                               item.history && Array.isArray(item.history)?item.history.map((logs,historyIndex)=>{
@@ -49,10 +55,10 @@ const AdminHistory = () => {
                               }):<td>No data to display</td>
                             )
                           }):<td>No data available</td>
-                        }
+                        
 
                         
-                    
+                      }
                 </tbody>
       
 

@@ -11,14 +11,14 @@ import ProductHistory from './AdminComponants/ProductHistory';
 import AdminHistory from './AdminComponants/AdminHistory';
 import ProjectHistory from './AdminComponants/ProjectHistory';
 import ProjectDetails from './AdminComponants/ProjectDetails';
-import PendingOrders from './AdminComponants/PendingOrders'; 
+import PendingOrders from './AdminComponants/PendingOrders';  
 
 export default function Router() {
   return (
     <>
     <Routes>
         <Route path="/" element={<Login/>}/>
-        <Route path="/home" element={<Home/>}/> 
+        <Route path="/home" element={<Home/>}/>  
         <Route path="/forgotPassword/:email" element={<ForgotPassword/>}/>
         <Route path='/dashboard' element={<AdminNavbar/>}>
          <Route path="home" element={<AdminHome/>}/>

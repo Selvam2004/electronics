@@ -210,9 +210,14 @@ useEffect(()=>{
               onChange={e=>setType(e.target.value)}
             >
               <option>Select The Product Type</option>
-              <option value="ESEL">ESEL</option>
-              <option value="ESMH">ESMH</option>
-              <option value="ESGN">ESGN</option>
+              <option value="FIX">FIX</option>
+              <option value="OFT">OFT</option>
+              <option value="JET">JET</option>
+              <option value="AGI">AGI</option>
+              <option value="TRD">TRD</option>
+              <option value="SEI">SEI</option>
+              <option value="FPT">FPT</option>
+              <option value="STR">STR</option>
             </Form.Select>
             </Form.Group></Col>
             </Row>

@@ -3,12 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import { Col, Row } from 'react-bootstrap';
 const DetailModal = (props) => { 
   const [designerName,setDesignerName] = useState();
   const [projectName,setProjectName] = useState();
   const [quantity,setQuantity] = useState();
   const [isDisabled,setIsDisabled] = useState(false);
   const [userName,setUserName]=useState("")
+  const[userEmail,setEmail]=useState("")
+const acknowledge=[];
   useEffect(()=>{
     axios
     .get(`${process.env.REACT_APP_API}/home/userData`, {
@@ -16,9 +19,18 @@ const DetailModal = (props) => {
     })
     .then((res) => { 
         setUserName(res.data.name)
+        setEmail(res.data.email)
     })
     .catch((err) => console.log(err));
   },[]);
+  const push=(email)=>{
+    if(!acknowledge.includes(email)){
+      acknowledge.push(email)
+    }else{
+      const index=acknowledge.indexOf(email);
+      acknowledge.splice(index,1);
+    }
+  }
   const handleSubmit = async (e) => { 
     e.preventDefault();
     setIsDisabled(true);
@@ -29,7 +41,9 @@ const DetailModal = (props) => {
             designerName: designerName,
             projectName: projectName,
             quantity: quantity,
-            takenBy:userName
+            takenBy:userName,
+            userEmail:userEmail,
+            acknowledge:acknowledge,
         });
         
         alert(response.data);  
@@ -38,11 +52,13 @@ const DetailModal = (props) => {
     } catch (err) {
         console.error("Error while claiming items:", err.message);
     }
+
 }; 
   return (
     <div>
       <Modal
       {...props}
+      size='lg'
       
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -68,12 +84,53 @@ const DetailModal = (props) => {
       </Form.Group>
       <Form.Group>
         <Form.Label>Acknowledge To</Form.Label>
-      <Form.Check
-            label="1"
+        <Row>
+          <Col md={4}>
+          <Form.Check
+            label="Nagaraja S"
             type='checkbox'
-            value={"gowtham"}
-            onClick={(e)=>alert(e.target.value)}
-          />
+            value={"nagaraj@electrosolve.com"}
+            onClick={(e)=>push(e.target.value)}
+          /></Col>
+                    <Col md={4}>
+          <Form.Check
+            label="Divya P"
+            type='checkbox'
+            value={"salessupport2@electrosolve.com"}
+            onClick={(e)=>push(e.target.value)}
+          /></Col>
+                    <Col md={4}>
+          <Form.Check
+            label="Pooja M"
+            type='checkbox'
+            value={"salessupport1@electrosolve.com"}
+            onClick={(e)=>push(e.target.value)}
+          /></Col>
+        </Row>
+        <Row>
+          <Col md={4}>
+          <Form.Check
+            label="Rajesh S"
+            type='checkbox'
+            value={"rajesh@electrosolve.com"}
+            onClick={(e)=>push(e.target.value)}
+          /></Col>
+                    <Col md={4}>
+          <Form.Check
+            label="Dharanidharan B"
+            type='checkbox'
+            value={"dharanidharan@electrosolve.com"}
+            onClick={(e)=>push(e.target.value)}
+          /></Col>
+                    <Col md={4}>
+          <Form.Check
+            label="Wilson Mariaraj"
+            type='checkbox'
+            value={"wilson@electrosolve.com"}
+            onClick={(e)=>push(e.target.value)}
+          /></Col>
+        </Row>
+        
       </Form.Group>
     </Form>
         

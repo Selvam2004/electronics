@@ -66,6 +66,15 @@ const DetailModal = (props) => {
         <Form.Label><h5>Number Of Quantity Required</h5></Form.Label>
         <Form.Control type="Number" placeholder="Enter the quantity required"  onChange={(e)=>setQuantity(e.target.value)}/>
       </Form.Group>
+      <Form.Group>
+        <Form.Label>Acknowledge To</Form.Label>
+      <Form.Check
+            label="1"
+            type='checkbox'
+            value={"gowtham"}
+            onClick={(e)=>alert(e.target.value)}
+          />
+      </Form.Group>
     </Form>
         
       </Modal.Body>

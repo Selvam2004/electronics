@@ -16,6 +16,7 @@ const AddProduct = () => {
   const [linkToBuy2,setLinkToBuy2]=useState("");
   const[minQuantity,setminimumqty]=useState("");
   const [userName,setUserName]=useState("")
+  const[type,setType]=useState("")
   const [loading,SetLoading] = useState(false);
 
 useEffect(()=>{
@@ -34,7 +35,7 @@ useEffect(()=>{
   const handleClick = (e)=>{
 
     e.preventDefault();
-    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||image==null||linkToBuy===""||linkToBuy2===""||minQuantity===""){
+    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||image==null||linkToBuy===""||linkToBuy2===""||minQuantity===""||type===""){
       alert("Please Enter all Details");
     }
     else{
@@ -50,6 +51,7 @@ useEffect(()=>{
       formData.append('minQuantity', minQuantity);
       formData.append('category', category);
       formData.append('userName', userName);
+      formData.append('type',type);
       SetLoading(true);
       try{
         axios.post(`${process.env.REACT_APP_API}/home/addItems`,formData,{
@@ -177,7 +179,7 @@ useEffect(()=>{
                 </Col>
             </Row>
             <Row className='product-row'>
-                <Col md={6} className='product-col'>
+                <Col md={4} className='product-col'>
                 <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
               <Form.Label>Link TO Buy 1</Form.Label>
               <Form.Control
@@ -188,7 +190,7 @@ useEffect(()=>{
               />
             </Form.Group>
                 </Col>
-                <Col md={6} className='product-col'>
+                <Col md={4} className='product-col'>
                 <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
               <Form.Label>Link To Buy 2</Form.Label>
               <Form.Control
@@ -199,6 +201,20 @@ useEffect(()=>{
               />
             </Form.Group>
                 </Col>
+                <Col md={4} className='product-col'>
+                <Form.Group className="mb-3 product-group" >
+              <Form.Label>Product Type</Form.Label>
+              <Form.Select
+              aria-label="Default select example"
+              className="add-input"
+              onChange={e=>setType(e.target.value)}
+            >
+              <option>Select The Product Type</option>
+              <option value="ESEL">ESEL</option>
+              <option value="ESMH">ESMH</option>
+              <option value="ESGN">ESGN</option>
+            </Form.Select>
+            </Form.Group></Col>
             </Row>
             <Row>
             <div className="btn-div-pro">

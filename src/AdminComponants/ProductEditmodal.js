@@ -15,6 +15,7 @@ const ProductEditmodal = (props) => {
   const [linkToBuy2,setLinkToBuy2]=useState(props.linkToBuy2);
   const [available,setAvailable]=useState(props.available);
   const[minQuantity,setminimumqty]=useState(props.minQuantity);
+  const[supplierId,setsupplierId]=useState(props.supplierId);
   const [userName,setUserName]=useState("")
   useEffect(()=>{
     axios
@@ -27,7 +28,7 @@ const ProductEditmodal = (props) => {
     .catch((err) => console.log(err));
   },[]);
   const handleClick = ()=>{
-    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy,linkToBuy2,minQuantity,category,available,userName},{withCredentials:true})
+    axios.post(`${process.env.REACT_APP_API}/dashboard/updateProduct`, {_id,name,mfg,mfgpart,supplier,linkToBuy,linkToBuy2,minQuantity,category,available,userName,supplierId},{withCredentials:true})
     .then(res=>{
       alert(res.data)
       window.location.reload(true);
@@ -127,13 +128,13 @@ const ProductEditmodal = (props) => {
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label>
-                    <h5>Available Count</h5>
+                    <h5>Supplier Id</h5>
                   </Form.Label>
                   <Form.Control
-                    type="number"
-                    placeholder="Enter the Available Count"
-                    value={available}
-                    onChange={e=>setAvailable(e.target.value)}
+                    type="text"
+                    placeholder="Enter the Supplier Id"
+                    value={supplierId}
+                    onChange={e=>setsupplierId(e.target.value)}
                   />
                 </Form.Group>
               </Col>
@@ -153,6 +154,22 @@ const ProductEditmodal = (props) => {
                 </Form.Group>
               </Col>
               <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>
+                    <h5>Available Count</h5>
+                  </Form.Label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Enter the Available Count"
+                    value={available}
+                    onChange={e=>setAvailable(e.target.value)}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+
+            <Col md={6}>
                 <Form.Group className="mb-3 ">
                   <Form.Label>
                     <h5>Link To Buy 1</h5>
@@ -165,10 +182,6 @@ const ProductEditmodal = (props) => {
                   />
                 </Form.Group>
                 </Col>
-            </Row>
-            <Row>
-
-              
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label>
@@ -182,6 +195,7 @@ const ProductEditmodal = (props) => {
                   />
                 </Form.Group>
               </Col>
+
             </Row>
           </Form>
         </Modal.Body>

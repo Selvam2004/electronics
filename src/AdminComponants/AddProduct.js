@@ -18,6 +18,7 @@ const AddProduct = () => {
   const [userName,setUserName]=useState("")
   const[type,setType]=useState("")
   const [loading,SetLoading] = useState(false);
+  const[supplierId,setsupplierId]=useState("")
 
 useEffect(()=>{
   axios
@@ -35,7 +36,7 @@ useEffect(()=>{
   const handleClick = (e)=>{
 
     e.preventDefault();
-    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||image==null||linkToBuy===""||linkToBuy2===""||minQuantity===""||type===""){
+    if(name===""||supplier===""||mfg===""||mfgpart===""||category===""||available===""||image==null||linkToBuy===""||linkToBuy2===""||minQuantity===""||type===""||supplierId===""){
       alert("Please Enter all Details");
     }
     else{
@@ -52,7 +53,9 @@ useEffect(()=>{
       formData.append('category', category);
       formData.append('userName', userName);
       formData.append('type',type);
+      formData.append('supplierId',supplierId);
       SetLoading(true);
+      alert(supplierId);
       try{
         axios.post(`${process.env.REACT_APP_API}/home/addItems`,formData,{
           headers: {
@@ -127,19 +130,15 @@ useEffect(()=>{
                 </Col>
             </Row>
             <Row className='product-row'>
-                <Col md={6} className='product-col'>
-                <Form.Group className="mb-3 product-group" >
-              <Form.Label>Category</Form.Label>
-              <Form.Select
-              aria-label="Default select example"
-              className="add-input"
-              onChange={e=>setCategory(e.target.value)}
-            >
-              <option>Select The Category</option>
-              <option value="General">General</option>
-              <option value="Mechanical">Mechanical</option>
-              <option value="Electronics">Electronics</option>
-            </Form.Select>
+            <Col md={6} className='product-col'>
+                <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
+              <Form.Label>Supplier Id</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Supplier Id"
+                className="product-input"
+                onChange={e=>setsupplierId(e.target.value)}
+              />
             </Form.Group>
                 </Col>
                 <Col md={6} className='product-col'>
@@ -179,7 +178,7 @@ useEffect(()=>{
                 </Col>
             </Row>
             <Row className='product-row'>
-                <Col md={4} className='product-col'>
+                <Col md={6} className='product-col'>
                 <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
               <Form.Label>Link TO Buy 1</Form.Label>
               <Form.Control
@@ -190,7 +189,7 @@ useEffect(()=>{
               />
             </Form.Group>
                 </Col>
-                <Col md={4} className='product-col'>
+                <Col md={6} className='product-col'>
                 <Form.Group className="mb-3 product-group " controlId="formBasicEmail">
               <Form.Label>Link To Buy 2</Form.Label>
               <Form.Control
@@ -201,7 +200,10 @@ useEffect(()=>{
               />
             </Form.Group>
                 </Col>
-                <Col md={4} className='product-col'>
+                
+            </Row>
+            <Row>
+            <Col md={6} className='product-col'>
                 <Form.Group className="mb-3 product-group" >
               <Form.Label>Product Type</Form.Label>
               <Form.Select
@@ -220,6 +222,21 @@ useEffect(()=>{
               <option value="STR">STR</option>
             </Form.Select>
             </Form.Group></Col>
+            <Col md={6} className='product-col'>
+                <Form.Group className="mb-3 product-group" >
+              <Form.Label>Category</Form.Label>
+              <Form.Select
+              aria-label="Default select example"
+              className="add-input"
+              onChange={e=>setCategory(e.target.value)}
+            >
+              <option>Select The Category</option>
+              <option value="General">General</option>
+              <option value="Mechanical">Mechanical</option>
+              <option value="Electronics">Electronics</option>
+            </Form.Select>
+            </Form.Group>
+                </Col>
             </Row>
             <Row>
             <div className="btn-div-pro">

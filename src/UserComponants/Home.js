@@ -130,13 +130,20 @@ const Home = () => {
                         </Row>
                         <Row className="description">
                           <Col md={8}>
-                            <h5>Supplier: {item.supplier}</h5>
+                          <h5>SupplierId: {item.supplierId}</h5>
                           </Col>
                           <Col md={4}>
-                            <h5>Category: {item.category}</h5>
+                          <h5>Supplier: {item.supplier}</h5>
                           </Col>
                         </Row>
-                        <h5 className="description">Available Quantity: {item.available}</h5>
+                       <Row  className="description">
+                        <Col md={8}>
+                        <h5  >Available Quantity: {item.available}</h5>
+                        </Col>
+                        <Col md={4}>
+                        <h5 >Category: {item.category}</h5>
+                        </Col>
+                       </Row>
                         <Button
                           onClick={() => handleModalShow(item)}
                           style={{
